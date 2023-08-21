@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 	t_data	img;
+	t_data	wall;
+	int		size;
 
 	check_args(argc, argv);
 	game.mlx = mlx_init();
@@ -36,6 +38,14 @@ int	main(int argc, char **argv)
 
 	img.img = mlx_new_image(game.mlx, 1024, 720);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	size = 60;
+	wall.img = mlx_xpm_file_to_image(game.mlx, "assets/wall.xpm", &size, &size);
+	if (!wall.img)
+	{
+		printf("Couldn't load map texture\n");
+		exit(1);
+	}
+	wall.addr = mlx_get_data_addr(wall.img, &wall.bits_per_pixel, &wall.line_length, &wall.endian);
 
 	int	x;
 	x = 0;
@@ -107,7 +117,7 @@ int	main(int argc, char **argv)
 				perpWallDist = (sideDistX - deltaDistX);
 			else
 				perpWallDist = (sideDistY - deltaDistY);
-			printf("dist %lf\n", perpWallDist);
+			//printf("dist %lf\n", perpWallDist);
 			
 			int	lineHeight = (int)(720 / perpWallDist);
 			int drawStart = -lineHeight / 2 + 720 / 2;
@@ -116,13 +126,27 @@ int	main(int argc, char **argv)
 			int drawEnd = lineHeight / 2 + 720 / 2;
 			if (drawEnd >= 720)
 				drawEnd = 719;
-			while (drawStart <= drawEnd)
+			double wallX;
+			if (side == 0)
+				wallX = game.player_pos.y + perpWallDist * rayDirY;
+			else
+				wallX = game.player_pos.x + perpWallDist * rayDirX;
+			wallX -= floor(wallX);
+			int texX = wallX * 60.0;
+			if(side == 0 && rayDirX > 0)
+				texX = 60 - texX - 1;
+			if(side == 1 && rayDirY < 0)
+				texX = 60 - texX - 1;
+			int	y = drawStart;
+			while (y <= drawEnd)
 			{
+				int	texY = (double)(y - drawStart) / (double)(drawEnd - drawStart) * 60;
+				//printf("%lf\n", (double)(y - drawStart) / (double)(drawEnd - drawStart) * 60);
 				if (side == 0)
-					my_mlx_pixel_put(&img, x, drawStart, 0x00FF0000);
+					my_mlx_pixel_put(&img, x, y, image_pixel_get_color(&wall, texX, texY));
 				else
-					my_mlx_pixel_put(&img, x, drawStart, 0x0000FF00);
-				drawStart++;
+					my_mlx_pixel_put(&img, x, y, image_pixel_get_color(&wall, texX, texY));
+				y++;
 			}
 		}
 		x++;

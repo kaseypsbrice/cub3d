@@ -60,4 +60,7 @@ int			check_args(int argc, char **argv);
 /* --- Key Functions --- */
 int			keycodes(int keycode, t_game *game);
 
+/* --- Image Functions ---*/
+int			image_pixel_get_color(t_data *img, int x, int y);
+
 #endif
