@@ -26,4 +26,7 @@ t_vector	get_map_size(const char *path);
 char		**get_map(const char *path, t_vector size);
 void		print_map(char **map, t_vector size);
 
+/* --- Checkers --- */
+int			check_args(int argc, char **argv);
+
 #endif

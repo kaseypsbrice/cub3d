@@ -11,7 +11,8 @@ INCL = -I ./includes/\
 SRCDIR = ./srcs/
 SRC = main.c\
       parse.c\
-      debug.c
+      debug.c\
+	  checkers.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/
