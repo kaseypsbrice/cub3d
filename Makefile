@@ -12,7 +12,8 @@ SRCDIR = ./srcs/
 SRC = main.c\
       parse.c\
       debug.c\
-	  checkers.c
+	  checkers.c\
+	  vector.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

@@ -8,6 +8,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <errno.h>
+# include <math.h>
 # include "../libft/libft.h"
 
 typedef struct s_vector
@@ -16,11 +17,28 @@ typedef struct s_vector
 	double	y;
 }	t_vector;
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
 typedef struct s_game
 {
 	t_vector	size;
+	t_vector	player_pos;
+	t_vector	player_dir;
+	t_vector	cam_plane;
+	void		*mlx;
+	void		*win;
 	char		**map;
 }	t_game;
+
+/* --- Vector Functions --- */
+t_vector	set_vector(double x, double y);
 
 t_vector	get_map_size(const char *path);
 char		**get_map(const char *path, t_vector size);
