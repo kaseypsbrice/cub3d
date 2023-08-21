@@ -1,5 +1,16 @@
 #include "cub3d.h"
 
+int	keycodes(int keycode, t_game *game)
+{
+	if (keycode == ESC)
+		mlx_destroy_window(game->mlx, game->win);
+	// if (keycode == LEFT_KEY)
+	// 
+	// if (keycode == RIGHT_KEY)
+	//
+	return (0);
+}
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -117,10 +128,11 @@ int	main(int argc, char **argv)
 		x++;
 	}
 	mlx_put_image_to_window(game.mlx, game.win, img.img, 0, 0);
+	mlx_key_hook(game.win, &keycodes, &game);
 	mlx_loop(game.mlx);
-
-
 
 	//mlx_loop(game.mlx);
 	return (0);
 }
+
+/* Added mlx_key_hook to handle keys pressed. */

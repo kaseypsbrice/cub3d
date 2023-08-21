@@ -6,8 +6,8 @@ static int	is_cub(char *str)
 
 	i = ft_strlen(str) - 4;
 	if (strcmp(&str[i], ".cub") == 0)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 int	check_args(int argc, char **argv)
@@ -17,7 +17,7 @@ int	check_args(int argc, char **argv)
 		ft_printf("arg : invalid number of arguments\n");
 		exit(1);
 	}
-	if (is_cub(argv[1]) == 1)
+	if (!is_cub(argv[1]))
 	{
 		ft_printf("map : unusable formatting\n");
 		exit(1);

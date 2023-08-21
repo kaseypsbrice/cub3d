@@ -11,6 +11,16 @@
 # include <math.h>
 # include "../libft/libft.h"
 
+# define W			119
+# define A			97
+# define S			115
+# define D			100
+# define ESC		65307
+# define KEY_UP		65362
+# define KEY_DOWN	65364
+# define KEY_LEFT	65361
+# define KEY_RIGHT	65363
+
 typedef struct s_vector
 {
 	double	x;
@@ -46,5 +56,8 @@ void		print_map(char **map, t_vector size);
 
 /* --- Checkers --- */
 int			check_args(int argc, char **argv);
+
+/* --- Key Functions --- */
+int			keycodes(int keycode, t_game *game);
 
 #endif

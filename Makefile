@@ -40,10 +40,10 @@ all : $(OBJDIR) $(MLX) $(LIBFT) $(NAME)
 	@printf "$(GREEN) | Cub3d executable created $(RESET)\n"
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	$(CC) $(FLAGS) -c $< -o $@ $(INCL)
+	@$(CC) $(FLAGS) -c $< -o $@ $(INCL)
 
 $(NAME) : $(OBJS)
 	@$(CC) $(FLAGS) $(OBJS) -o $@ $(INCL) $(LIBFT) $(MLX) -lXext -lX11 -lm
