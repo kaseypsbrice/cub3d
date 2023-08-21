@@ -5,7 +5,7 @@ static int	is_cub(char *str)
 	size_t	i;
 
 	i = ft_strlen(str) - 4;
-	if (strcmp(&str[i], ".cub") == 0)
+	if (ft_strcmp(&str[i], ".cub") == 0)
 		return (1);
 	return (0);
 }
