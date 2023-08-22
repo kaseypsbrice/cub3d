@@ -21,6 +21,9 @@
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
 
+# define SCREEN_WIDTH 1024
+# define SCREEN_HEIGHT 720
+
 typedef struct s_vector
 {
 	double	x;
@@ -36,12 +39,37 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+typedef struct s_raycast
+{
+	t_vector	ray_dir;
+	t_vector	side_dist;
+	t_vector	delta_dist;
+	double		wall_dist;
+	double		camera_x;
+	double		wall_x;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			tex_x;
+	int			tex_y;
+	int			x;
+	int			y;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}	t_raycast;
+
 typedef struct s_game
 {
 	t_vector	size;
 	t_vector	player_pos;
 	t_vector	player_dir;
 	t_vector	cam_plane;
+	t_data		ray_img;
+	t_data		wall_img;
 	void		*mlx;
 	void		*win;
 	char		**map;
@@ -60,7 +88,12 @@ int			check_args(int argc, char **argv);
 /* --- Key Functions --- */
 int			keycodes(int keycode, t_game *game);
 
-/* --- Image Functions ---*/
+/* --- Image Functions --- */
 int			image_pixel_get_color(t_data *img, int x, int y);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/* --- Raycast Functions --- */
+void		raycast(t_game *g);
+void		draw_raycast(t_game *g, t_raycast *r);
 
 #endif

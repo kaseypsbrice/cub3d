@@ -14,7 +14,9 @@ SRC = main.c\
       debug.c\
 	  checkers.c\
 	  vector.c\
-	  image.c
+	  image.c\
+	  raycast.c\
+	  raycast_draw.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/
