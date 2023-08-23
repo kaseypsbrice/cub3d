@@ -87,13 +87,22 @@ int			check_args(int argc, char **argv);
 
 /* --- Key Functions --- */
 int			keycodes(int keycode, t_game *game);
+/* --- Key Utils --- */
+int			close_window(t_game *game);
 
 /* --- Image Functions --- */
 int			image_pixel_get_color(t_data *img, int x, int y);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
+/* --- Player Movement --- */
+void	move_forward(t_game *game);
+void	move_back(t_game *game);
+
+
 /* --- Raycast Functions --- */
 void		raycast(t_game *g);
 void		draw_raycast(t_game *g, t_raycast *r);
+
+int			render(t_game *game);
 
 #endif

@@ -16,7 +16,10 @@ SRC = main.c\
 	  vector.c\
 	  image.c\
 	  raycast.c\
-	  raycast_draw.c
+	  raycast_draw.c\
+	  key_hooks.c\
+	  key_utils.c\
+	  movement.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

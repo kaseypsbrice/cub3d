@@ -1,35 +1,24 @@
 #include "cub3d.h"
 
-int	keycodes(int keycode, t_game *game)
-{
-	if (keycode == ESC)
-		mlx_destroy_window(game->mlx, game->win);
-	// if (keycode == LEFT_KEY)
-	// 
-	// if (keycode == RIGHT_KEY)
-	//
-	return (0);
-}
-
 int	render(t_game *game)
 {
-	raycast(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img.img, 0, 0);
 	mlx_destroy_image(game->mlx, game->ray_img.img);
 	game->ray_img.img = mlx_new_image(game->mlx, 1024, 720);
 
 	// COMMENT HERE TO REDUCE NAUSEA
-	double	angle = 0.01;
-	double	cos = cosh(angle);
-	double	sin = sinh(angle);
-	game->player_dir.x = cos * game->player_dir.x + -sin * game->player_dir.y;
-	game->player_dir.y = sin * game->player_dir.x + cos * game->player_dir.y;
-	double	mag = sqrt(game->player_dir.x * game->player_dir.x + game->player_dir.y * game->player_dir.y);
-	game->player_dir.x /= mag;
-	game->player_dir.y /= mag;
+	// double	angle = 0.01;
+	// double	cos = cosh(angle);
+	// double	sin = sinh(angle);
+	// game->player_dir.x = cos * game->player_dir.x + -sin * game->player_dir.y;
+	// game->player_dir.y = sin * game->player_dir.x + cos * game->player_dir.y;
+	// double	mag = sqrt(game->player_dir.x * game->player_dir.x + game->player_dir.y * game->player_dir.y);
+	// game->player_dir.x /= mag;
+	// game->player_dir.y /= mag;
 	// COMMENT HERE TO REDUCE NAUSEA
 	
 	//printf("x %f y %f\n", game->player_dir.x, game->player_dir.y);
+	raycast(game);
 	return (0);
 }
 
@@ -64,5 +53,3 @@ int	main(int argc, char **argv)
 	mlx_loop(game.mlx);
 	return (0);
 }
-
-/* Added mlx_key_hook to handle keys pressed. */
