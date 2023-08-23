@@ -27,7 +27,6 @@ int	render(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	int		size;
 
 	check_args(argc, argv);
 	game.mlx = mlx_init();
@@ -41,15 +40,11 @@ int	main(int argc, char **argv)
 
 	game.ray_img.img = mlx_new_image(game.mlx, 1024, 720);
 	game.ray_img.addr = mlx_get_data_addr(game.ray_img.img, &game.ray_img.bits_per_pixel, &game.ray_img.line_length, &game.ray_img.endian);
-	size = 60;
 	// game.wall_img will be replaced when we do multiple wall textures
-	game.wall_img.img = mlx_xpm_file_to_image(game.mlx, "assets/wall.xpm", &size, &size);
-	if (!game.wall_img.img)
-	{
-		printf("Couldn't load wall texture\n");
-		exit(1);
-	}
-	game.wall_img.addr = mlx_get_data_addr(game.wall_img.img, &game.wall_img.bits_per_pixel, &game.wall_img.line_length, &game.wall_img.endian);
+	game.walln = load_texture(&game, "assets/wall_north.xpm");
+	game.walle = load_texture(&game, "assets/wall_east.xpm");
+	game.walls = load_texture(&game, "assets/wall_south.xpm");
+	game.wallw = load_texture(&game, "assets/wall_west.xpm");
 	mlx_hook(game.win, 2, 1L, &keycodes, &game);
 	mlx_hook(game.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx, render, &game);

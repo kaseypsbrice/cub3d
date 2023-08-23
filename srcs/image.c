@@ -1,12 +1,31 @@
 #include "cub3d.h"
 
+t_data	load_texture(t_game *game, char *path)
+{
+	t_data	img;
+
+	img.img = mlx_xpm_file_to_image(game->mlx, path, &img.width, &img.height);
+	if (!img.img)
+	{
+		printf("Error\nCouldn't load texture %s\n", path);
+		exit(1);
+	}
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
+	&img.line_length, &img.endian);
+	if (!img.addr)
+	{
+		printf("Error\nCouldn't load texture %s\n", path);
+		exit(1);
+	}
+	return (img);
+}
+
 int	image_pixel_get_color(t_data *img, int x, int y)
 {
 	char	*address;
 
 	address = img->addr;
 	address += (y * img->line_length + x * (img->bits_per_pixel / 8));
-	//printf("Color at %d %d: %ud\n", x, y, *(unsigned int *)address);
 	return (*(unsigned int *)address);
 }
 

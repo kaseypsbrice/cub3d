@@ -37,6 +37,8 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_data;
 
 typedef struct s_raycast
@@ -69,7 +71,10 @@ typedef struct s_game
 	t_vector	player_dir;
 	t_vector	cam_plane;
 	t_data		ray_img;
-	t_data		wall_img;
+	t_data		walln;
+	t_data		walle;
+	t_data		walls;
+	t_data		wallw;
 	void		*mlx;
 	void		*win;
 	char		**map;
@@ -97,6 +102,7 @@ int			close_window(t_game *game);
 int			is_wall(t_game *game, double next_pos_x, double next_pos_y);
 
 /* --- Image Functions --- */
+t_data		load_texture(t_game *game, char *path);
 int			image_pixel_get_color(t_data *img, int x, int y);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 

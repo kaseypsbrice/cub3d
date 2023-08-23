@@ -1,5 +1,5 @@
 /* XPM */
-static char * wall_xpm = {
+static char * wall_north_xpm = {
 "60 60 32 1",
 " 	c #000000",
 ".	c #2F0F0F",
