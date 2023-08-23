@@ -101,6 +101,8 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 /* --- Player Movement --- */
 void		move_forward(t_game *game);
 void		move_back(t_game *game);
+void		move_left(t_game *game);
+void		move_right(t_game *game);
 void		rotate_player(t_game *g, double angle);
 
 

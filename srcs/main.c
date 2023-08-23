@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 	}
 	game.wall_img.addr = mlx_get_data_addr(game.wall_img.img, &game.wall_img.bits_per_pixel, &game.wall_img.line_length, &game.wall_img.endian);
 	mlx_key_hook(game.win, &keycodes, &game);
+	mlx_hook(game.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	return (0);

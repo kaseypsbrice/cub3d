@@ -34,6 +34,32 @@ void	move_back(t_game *game)
 }
 /* Only difference is that we're subtracting. */
 
+void	move_left(t_game *game)
+{
+	double	move_speed;
+	double	next_pos_x;
+	double	next_pos_y;
+
+	move_speed = 0.1;
+	next_pos_x = game->player_pos.x - game->cam_plane.x * move_speed;
+	next_pos_y = game->player_pos.y - game->cam_plane.y * move_speed;
+	game->player_pos.x = next_pos_x;
+	game->player_pos.y = next_pos_y;
+}
+
+void	move_right(t_game *game)
+{
+	double	move_speed;
+	double	next_pos_x;
+	double	next_pos_y;
+
+	move_speed = 0.1;
+	next_pos_x = game->player_pos.x + game->cam_plane.x * move_speed;
+	next_pos_y = game->player_pos.y + game->cam_plane.y * move_speed;
+	game->player_pos.x = next_pos_x;
+	game->player_pos.y = next_pos_y;
+}
+
 void	rotate_player(t_game *g, double angle)
 {
 	double		cos;
