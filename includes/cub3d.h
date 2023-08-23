@@ -91,8 +91,10 @@ int			check_args(int argc, char **argv);
 
 /* --- Key Functions --- */
 int			keycodes(int keycode, t_game *game);
+
 /* --- Key Utils --- */
 int			close_window(t_game *game);
+int			is_wall(t_game *game, double next_pos_x, double next_pos_y);
 
 /* --- Image Functions --- */
 int			image_pixel_get_color(t_data *img, int x, int y);

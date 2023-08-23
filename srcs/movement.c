@@ -9,12 +9,11 @@ void	move_forward(t_game *game)
 	move_speed = 0.1;
 	next_pos_x = game->player_pos.x + game->player_dir.x * move_speed;
 	next_pos_y = game->player_pos.y + game->player_dir.y * move_speed;
-	// Collision detection should be done here before moving on to the
-	// following code...
-	game->player_pos.x = next_pos_x;
-	game->player_pos.y = next_pos_y;
-	raycast(game);
-	render(game);
+	if (!is_wall(game, next_pos_x, next_pos_y))
+	{
+		game->player_pos.x = next_pos_x;
+		game->player_pos.y = next_pos_y;
+	}
 }
 /* Calculates the players next position based on the 
  * player's current position and direction.
@@ -29,8 +28,11 @@ void	move_back(t_game *game)
 	move_speed = 0.1;
 	next_pos_x = game->player_pos.x - game->player_dir.x * move_speed;
 	next_pos_y = game->player_pos.y - game->player_dir.y * move_speed;
-	game->player_pos.x = next_pos_x;
-	game->player_pos.y = next_pos_y;
+	if (!is_wall(game, next_pos_x, next_pos_y))
+	{
+		game->player_pos.x = next_pos_x;
+		game->player_pos.y = next_pos_y;
+	}
 }
 /* Only difference is that we're subtracting. */
 
@@ -43,8 +45,11 @@ void	move_left(t_game *game)
 	move_speed = 0.1;
 	next_pos_x = game->player_pos.x - game->cam_plane.x * move_speed;
 	next_pos_y = game->player_pos.y - game->cam_plane.y * move_speed;
-	game->player_pos.x = next_pos_x;
-	game->player_pos.y = next_pos_y;
+	if (!is_wall(game, next_pos_x, next_pos_y))
+	{
+		game->player_pos.x = next_pos_x;
+		game->player_pos.y = next_pos_y;
+	}
 }
 
 void	move_right(t_game *game)
@@ -56,8 +61,11 @@ void	move_right(t_game *game)
 	move_speed = 0.1;
 	next_pos_x = game->player_pos.x + game->cam_plane.x * move_speed;
 	next_pos_y = game->player_pos.y + game->cam_plane.y * move_speed;
-	game->player_pos.x = next_pos_x;
-	game->player_pos.y = next_pos_y;
+	if (!is_wall(game, next_pos_x, next_pos_y))
+	{
+		game->player_pos.x = next_pos_x;
+		game->player_pos.y = next_pos_y;
+	}
 }
 
 void	rotate_player(t_game *g, double angle)
