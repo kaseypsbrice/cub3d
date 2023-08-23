@@ -33,3 +33,24 @@ void	move_back(t_game *game)
 	game->player_pos.y = next_pos_y;
 }
 /* Only difference is that we're subtracting. */
+
+void	rotate_player(t_game *g, double angle)
+{
+	double		cos;
+	double		sin;
+	double		opx;
+	double		ocx;
+	t_vector	m;
+
+	cos = cosh(angle);
+	sin = sinh(angle);
+	m = set_vector(mag(g->player_dir), mag(g->cam_plane));
+	opx = g->player_dir.x;
+	ocx = g->cam_plane.x;
+	g->player_dir.x = g->player_dir.x * cos - g->player_dir.y * sin;
+	g->player_dir.y = opx * sin + g->player_dir.y * cos;
+	g->cam_plane.x = g->cam_plane.x * cos - g->cam_plane.y * sin;
+	g->cam_plane.y = ocx * sin + g->cam_plane.y * cos;
+	g->player_dir = multiply(normalized(g->player_dir), m.x);
+	g->cam_plane = multiply(normalized(g->cam_plane), m.y);
+}

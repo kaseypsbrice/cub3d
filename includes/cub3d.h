@@ -77,6 +77,10 @@ typedef struct s_game
 
 /* --- Vector Functions --- */
 t_vector	set_vector(double x, double y);
+t_vector	normalized(t_vector vec);
+t_vector	match_rotation(t_vector from, t_vector to);
+t_vector	multiply(t_vector vec, double m);
+double		mag(t_vector vec);
 
 t_vector	get_map_size(const char *path);
 char		**get_map(const char *path, t_vector size);
@@ -95,8 +99,9 @@ int			image_pixel_get_color(t_data *img, int x, int y);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /* --- Player Movement --- */
-void	move_forward(t_game *game);
-void	move_back(t_game *game);
+void		move_forward(t_game *game);
+void		move_back(t_game *game);
+void		rotate_player(t_game *g, double angle);
 
 
 /* --- Raycast Functions --- */

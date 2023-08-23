@@ -7,14 +7,16 @@ int	render(t_game *game)
 	game->ray_img.img = mlx_new_image(game->mlx, 1024, 720);
 
 	// COMMENT HERE TO REDUCE NAUSEA
-	// double	angle = 0.01;
-	// double	cos = cosh(angle);
-	// double	sin = sinh(angle);
-	// game->player_dir.x = cos * game->player_dir.x + -sin * game->player_dir.y;
-	// game->player_dir.y = sin * game->player_dir.x + cos * game->player_dir.y;
-	// double	mag = sqrt(game->player_dir.x * game->player_dir.x + game->player_dir.y * game->player_dir.y);
-	// game->player_dir.x /= mag;
-	// game->player_dir.y /= mag;
+	//rotate_player(game, 0.01);
+	 //double	angle = 0.01;
+	 //double	cos = cosh(angle);
+	 //double	sin = sinh(angle);
+	 //double oldX = game->player_dir.x;
+	 //game->player_dir.x = game->player_dir.x * cos - game->player_dir.y * sin;
+	 //game->player_dir.y = oldX * sin + game->player_dir.y * cos;
+	 //double oldPlaneX = game->cam_plane.x;
+	 //game->cam_plane.x = game->cam_plane.x * cos - game->cam_plane.y * sin;
+	 //game->cam_plane.y = oldPlaneX * sin + game->cam_plane.y * cos;
 	// COMMENT HERE TO REDUCE NAUSEA
 	
 	//printf("x %f y %f\n", game->player_dir.x, game->player_dir.y);

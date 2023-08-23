@@ -12,9 +12,9 @@ int	keycodes(int keycode, t_game *game)
 		move_back(game);
 	// if (keycode == D)
 	// 	move_right();
-	// if (keycode == KEY_LEFT)
-	// 
-	// if (keycode == KEY_RIGHT)
-	//
+	if (keycode == KEY_LEFT)
+		rotate_player(game, -0.2);
+	if (keycode == KEY_RIGHT)
+		rotate_player(game, 0.2);
 	return (0);
 }
