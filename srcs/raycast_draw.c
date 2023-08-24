@@ -1,7 +1,46 @@
 #include "cub3d.h"
 
+void	shift_dbuf(t_game *g, int i)
+{
+	int	j;
+
+	j = g->dbuf_idx;
+	while (j > i)
+	{
+		g->dbuf[j] = g->dbuf[j - 1];
+		j--;
+	}
+	g->dbuf_idx++;
+}
+
+void	insert_dbuf(t_game *g, t_render r)
+{
+	int	i;
+
+	i = 0;
+	if (g->dbuf_idx >= DEPTH_BUFFER)
+		return ;
+	while (1)
+	{
+		if (i == g->dbuf_idx)
+		{
+			g->dbuf[g->dbuf_idx++] = r;
+			break ;
+		}
+		if (g->dbuf[i].depth <= r.depth)
+		{
+			shift_dbuf(g, i);
+			g->dbuf[i] = r;
+			break ;
+		}
+		i++;
+	}
+}
+
 void	_draw_raycast(t_game *g, t_raycast *r, t_data img)
 {
+	t_render	ray;
+
 	r->draw_start = -r->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (r->draw_start < 0)
 		r->draw_start = 0;
@@ -14,7 +53,15 @@ void	_draw_raycast(t_game *g, t_raycast *r, t_data img)
 		r->tex_x = img.width - r->tex_x - 1;
 	else if (r->side == 1 && r->ray_dir.y < 0)
 		r->tex_x = img.width - r->tex_x - 1;
-	r->y = r->draw_start;
+	ray.depth = r->wall_dist;
+	ray.x = r->x;
+	ray.tex_x = r->tex_x;
+	ray.draw_start = r->draw_start;
+	ray.draw_end = r->draw_end;
+	ray.tex = img;
+	ray.type = RAY;
+	insert_dbuf(g, ray);
+	/*r->y = r->draw_start;
 	while (r->y <= r->draw_end)
 	{
 		r->tex_y = (double)(r->y - r->draw_start) / \
@@ -22,7 +69,7 @@ void	_draw_raycast(t_game *g, t_raycast *r, t_data img)
 		my_mlx_pixel_put(&g->ray_img, r->x, r->y, \
 		image_pixel_get_color(&img, r->tex_x, r->tex_y));
 		r->y++;
-	}
+	}*/
 }
 
 void	draw_raycast(t_game *g, t_raycast *r)

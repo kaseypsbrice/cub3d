@@ -24,6 +24,8 @@
 # define SCREEN_WIDTH 1024
 # define SCREEN_HEIGHT 720
 
+# define DEPTH_BUFFER 5000
+
 typedef struct s_vector
 {
 	double	x;
@@ -64,13 +66,31 @@ typedef struct s_raycast
 	int			draw_end;
 }	t_raycast;
 
+# define RAY 0
+# define BILLBOARD 1
+
+typedef struct s_render
+{
+	double	depth;
+	t_data	tex;
+	int		type;
+	int		x;
+	int		y;
+	int		tex_x;
+	int		tex_y;
+	int		draw_start;
+	int		draw_end;
+}	t_render;
+
 typedef struct s_game
 {
 	t_vector	size;
 	t_vector	player_pos;
 	t_vector	player_dir;
 	t_vector	cam_plane;
+	t_render	dbuf[DEPTH_BUFFER];
 	t_data		ray_img;
+	t_data		enemy;
 	t_data		walln;
 	t_data		walle;
 	t_data		walls;
@@ -79,6 +99,7 @@ typedef struct s_game
 	void		*win;
 	char		**map;
 	int			mouse_x;
+	int			dbuf_idx;
 }	t_game;
 
 /* --- Vector Functions --- */
@@ -118,6 +139,7 @@ int			mouse_rotate_player(int	new_x, int new_y, t_game *game);
 /* --- Raycast Functions --- */
 void		raycast(t_game *g);
 void		draw_raycast(t_game *g, t_raycast *r);
+void		insert_dbuf(t_game *g, t_render r);
 
 int			render(t_game *game);
 
