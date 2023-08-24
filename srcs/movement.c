@@ -15,7 +15,7 @@ void	move_forward(t_game *game)
 		game->player_pos.y = next_pos_y;
 	}
 }
-/* Calculates the players next position based on the 
+/* Calculates the next position based on the 
  * player's current position and direction.
  */
 

@@ -78,6 +78,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	char		**map;
+	int			mouse_x;
 }	t_game;
 
 /* --- Vector Functions --- */
@@ -112,7 +113,7 @@ void		move_back(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *g, double angle);
-
+int			mouse_rotate_player(int	new_x, int new_y, t_game *game);
 
 /* --- Raycast Functions --- */
 void		raycast(t_game *g);

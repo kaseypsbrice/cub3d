@@ -18,3 +18,10 @@ int	keycodes(int keycode, t_game *game)
 		rotate_player(game, 0.2);
 	return (0);
 }
+
+int	close_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	exit(0);
+}
+/* Should probably free() at some point too...*/
