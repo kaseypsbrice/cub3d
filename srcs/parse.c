@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+
 t_vector	_get_map_size(int fd)
 {
 	t_vector	size;
@@ -24,6 +25,8 @@ t_vector	_get_map_size(int fd)
 	return (size);
 }
 
+// Calculates the size of the 2D array needed
+// to store the map information
 t_vector	get_map_size(const char *path)
 {
 	int			fd;
@@ -39,45 +42,53 @@ t_vector	get_map_size(const char *path)
 
 char	**_get_map(int fd, char **map)
 {
-	t_vector	it;
+	int			x;
+	int			y;
 	char		c;
 
-	it.x = 0;
-	it.y = 0;
+	x = 0;
+	y = 0;
 	while (read(fd, &c, 1) > 0)
 	{
 		if (c == '\n')
 		{
-			it.x = 0;
-			it.y += 1;
+			x = 0;
+			y++;
 		}
 		else
 		{
-			map[(int)it.x][(int)it.y] = c;
-			it.x += 1;
+			map[x][y] = c;
+			x++;
 		}
 	}
 	return (map);
 }
 
+// Reads a map from a file and stores it in a 2D array
 char	**get_map(const char *path, t_vector size)
 {
-	t_vector	it;
+	int			x;
+	int			y;
 	char		**map;
 
-	map = malloc((int)size.x * sizeof(char *));
-	it.x = 0;
-	it.y = 0;
-	while (it.x < size.x)
+	map = malloc(size.x * sizeof(char *));
+	x = 0;
+	y = 0;
+	while (x < size.x)
 	{
-		it.y = 0;
-		map[(int)it.x] = malloc(size.y * sizeof(char));
-		while (it.y < size.y)
+		y = 0;
+		map[x] = malloc(size.y * sizeof(char));
+		while (y < size.y)
 		{
-			map[(int)it.x][(int)it.y] = ' ';
-			it.y += 1;
+			map[x][y] = ' ';
+			y++;
 		}
-		it.x += 1;
+		x++;
 	}
 	return (_get_map(open(path, O_RDONLY), map));
 }
+/* All the map coordinates are initialized to ' '
+*  This is so that when the end of a line is reached,
+*  we can go straight to the next line without having
+*  to fill the rest of the array
+*/

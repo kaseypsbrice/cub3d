@@ -19,7 +19,9 @@ SRC = main.c\
 	  raycast_draw.c\
 	  key_hooks.c\
 	  movement.c\
-	  movement_utils.c
+	  movement_utils.c\
+	  render.c\
+	  depth_buffer.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

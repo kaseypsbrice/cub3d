@@ -139,8 +139,13 @@ int			mouse_rotate_player(int	new_x, int new_y, t_game *game);
 /* --- Raycast Functions --- */
 void		raycast(t_game *g);
 void		draw_raycast(t_game *g, t_raycast *r);
-void		insert_dbuf(t_game *g, t_render r);
 
-int			render(t_game *game);
+/* --- Render Functions --- */
+void		render(t_game *game);
+
+/* --- Depth Buffer Functions ---*/
+void		remove_dbuf(t_game *g, int i);
+void		shift_dbuf(t_game *g, int i);
+void		insert_dbuf(t_game *g, t_render r);
 
 #endif

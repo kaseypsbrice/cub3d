@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+// Honestly just read this https://lodev.org/cgtutor/raycasting.html
+
 void	_init_raycast(t_game *g, t_raycast *r)
 {
 	if (r->ray_dir.x < 0)
