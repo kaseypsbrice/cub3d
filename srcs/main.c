@@ -35,6 +35,8 @@ int	main(int argc, char **argv)
 	game.walle = load_texture(&game, "assets/wall_east.xpm");
 	game.walls = load_texture(&game, "assets/wall_south.xpm");
 	game.wallw = load_texture(&game, "assets/wall_west.xpm");
+	game.gun[0] = load_texture(&game, "assets/gun0.xpm");
+	game.gun[1] = load_texture(&game, "assets/gun1.xpm");
 	mlx_hook(game.win, 2, 1L, &keycodes, &game);
 	mlx_hook(game.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx, update, &game);

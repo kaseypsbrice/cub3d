@@ -96,6 +96,7 @@ typedef struct s_game
 	t_data		walle;
 	t_data		walls;
 	t_data		wallw;
+	t_data		gun[2];
 	double		flash;
 	char		**map;
 	int			mouse_x;

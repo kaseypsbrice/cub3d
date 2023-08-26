@@ -113,16 +113,17 @@ void	render_dbuf(t_game *game)
 
 void	render(t_game *game)
 {
-	/*t_render	test;
+	t_render	test;
 
-	test.tex = game->enemy;
-	test.x = 500;
-	test.y = 300;
-	test.depth = 2.5;
-	test.type = BILLBOARD;
-	insert_dbuf(game, test);*/
+	test.tex = game->gun[0];
+	if (game->flash >= 0.6)
+		test.tex = game->gun[1];
+	test.x = SCREEN_WIDTH - 600;
+	test.y = SCREEN_HEIGHT - 450;
+	test.depth = 1;
 	raycast(game);
 	render_dbuf(game);
+	render_sprite(game, test);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img.img, 0, 0);
 	mlx_destroy_image(game->mlx, game->ray_img.img);
 	game->ray_img.img = mlx_new_image(game->mlx, 1024, 720);
