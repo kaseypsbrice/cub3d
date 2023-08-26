@@ -87,14 +87,14 @@ void	render_dbuf(t_game *game)
 
 void	render(t_game *game)
 {
-	t_render	test;
+	/*t_render	test;
 
 	test.tex = game->enemy;
 	test.x = 500;
 	test.y = 300;
 	test.depth = 2.5;
 	test.type = BILLBOARD;
-	insert_dbuf(game, test);
+	insert_dbuf(game, test);*/
 	raycast(game);
 	render_dbuf(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img.img, 0, 0);

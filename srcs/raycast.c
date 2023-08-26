@@ -28,7 +28,7 @@ void	_init_raycast(t_game *g, t_raycast *r)
 
 void	init_raycast(t_game *g, t_raycast *r)
 {
-	r->camera_x = 2 * r->x / (double)SCREEN_HEIGHT - 1;
+	r->camera_x = 2 * r->x / (double)SCREEN_WIDTH - 1;
 	r->ray_dir.x = g->player_dir.x + g->cam_plane.x * r->camera_x;
 	r->ray_dir.y = g->player_dir.y + g->cam_plane.y * r->camera_x;
 	r->map_x = (int)g->player_pos.x;
