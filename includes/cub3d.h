@@ -20,6 +20,7 @@
 # define KEY_DOWN	65364
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
+# define KEY_SPACE	32
 
 # define SCREEN_WIDTH 1024
 # define SCREEN_HEIGHT 720
@@ -95,11 +96,12 @@ typedef struct s_game
 	t_data		walle;
 	t_data		walls;
 	t_data		wallw;
-	void		*mlx;
-	void		*win;
+	double		flash;
 	char		**map;
 	int			mouse_x;
 	int			dbuf_idx;
+	void		*mlx;
+	void		*win;
 }	t_game;
 
 /* --- Vector Functions --- */

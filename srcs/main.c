@@ -3,6 +3,9 @@
 int	update(t_game *game)
 {
 	render(game);
+	game->flash -= 0.1;
+	if (game->flash < 0.0)
+		game->flash = 0.0;
 	return (0);
 }
 
@@ -12,7 +15,9 @@ int	main(int argc, char **argv)
 
 	check_args(argc, argv);
 	game.dbuf_idx = 0;
+	game.flash = 0.0;
 	game.mlx = mlx_init();
+	printf("mlx %p\n", game.mlx);
 	game.win = mlx_new_window(game.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
 	game.size = get_map_size(argv[1]);
 	game.map = get_map(argv[1], game.size);

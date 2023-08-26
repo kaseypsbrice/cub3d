@@ -16,13 +16,39 @@
 // Renders a ray to the game's ray_img image
 void	render_ray(t_game *game, t_render r)
 {
+	unsigned int	color;
+
 	r.y = r.draw_start;
 	while (r.y <= r.draw_end)
 	{
 		r.tex_y = (double)(r.y - r.draw_start) / \
 		(double)(r.draw_end - r.draw_start) * r.tex.height;
-		my_mlx_pixel_put(&game->ray_img, r.x, r.y, \
-		image_pixel_get_color(&r.tex, r.tex_x, r.tex_y));
+		color = image_pixel_get_color(&r.tex, r.tex_x, r.tex_y);
+		int	red = (color >> 16) & 0xFF;
+		int green = (color >> 8) & 0xFF;
+		int	blue = color & 0xFF;
+		if (r.depth >= 2.0)
+		{
+			double	scale = 1.0 + (r.depth - 2.0) / 4.0;
+			scale = scale * scale;
+			color = 0;
+			red = (double)red / scale;
+			green = (double)green / scale;
+			blue = (double)blue / scale;
+		}
+		
+		red += 60 / pow(r.depth * 0.4, 1.4) * game->flash;
+		green += 60 / pow(r.depth * 0.4, 1.4) * game->flash;
+		blue += 35 / pow(r.depth * 0.4, 1.4) * game->flash;
+		if (red > 0xFF)
+			red = 0xFF;
+		if (blue > 0xFF)
+			blue = 0xFF;
+		if (green > 0xFF)
+			green = 0xFF;
+		
+		color = red << 16 | green << 8 | blue;
+		my_mlx_pixel_put(&game->ray_img, r.x, r.y, color);
 		r.y++;
 	}
 }

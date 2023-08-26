@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 
 INCL = -I ./includes/\
        -I ./minilibx-linux/\

@@ -16,6 +16,9 @@ int	keycodes(int keycode, t_game *game)
 		rotate_player(game, -0.2);
 	if (keycode == KEY_RIGHT)
 		rotate_player(game, 0.2);
+	if (keycode == KEY_SPACE)
+		game->flash = 1.0;
+	
 	return (0);
 }
 

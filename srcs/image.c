@@ -4,8 +4,7 @@ t_data	load_texture(t_game *game, char *path)
 {
 	t_data	img;
 
-	//img.width = 60;
-	//img.height = 60;
+	printf("loading texture %s\n", path);
 	img.img = mlx_xpm_file_to_image(game->mlx, path, &img.width, &img.height);
 	if (!img.img)
 	{
