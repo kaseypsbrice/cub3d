@@ -124,6 +124,7 @@ void	render(t_game *game)
 	raycast(game);
 	render_dbuf(game);
 	render_sprite(game, test);
+	draw_minimap(game, game->ray_img);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img.img, 0, 0);
 	mlx_destroy_image(game->mlx, game->ray_img.img);
 	game->ray_img.img = mlx_new_image(game->mlx, 1024, 720);

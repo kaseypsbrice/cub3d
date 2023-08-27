@@ -22,7 +22,8 @@ SRC = main.c\
 	  movement_utils.c\
 	  render.c\
 	  depth_buffer.c\
-	  door.c
+	  door.c\
+	  minimap.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

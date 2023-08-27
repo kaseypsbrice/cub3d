@@ -36,7 +36,7 @@ void	toggle_door(t_game *g)
 /* The if statement of all time.
  * Just checks the distance to each door in the map
  * and if were not inside the door and then opens/closes it
-/*
+*/
 
 int	door_is_closed(t_game *g, int x, int y)
 {

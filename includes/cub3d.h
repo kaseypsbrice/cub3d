@@ -25,6 +25,11 @@
 
 # define SCREEN_WIDTH 1024
 # define SCREEN_HEIGHT 720
+# define MINIMAP_SIZE 400
+# define COLOR_WALL 0x00FFFFFF
+# define COLOR_FLOOR 0x00404040
+# define COLOR_PLAYER 0x0000FF00
+# define COLOR_DOOR 0x000000FF
 
 # define DEPTH_BUFFER 5000
 # define DOOR_BUFFER 32
@@ -168,5 +173,8 @@ void		init_doors(t_game *g);
 void		toggle_door(t_game *g);
 t_door		*get_door(t_game *g, int x, int y);
 int			door_is_closed(t_game *g, int x, int y);
+
+/* --- Minimap Functions --- */
+void		draw_minimap(t_game *g, t_data img);
 
 #endif
