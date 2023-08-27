@@ -58,7 +58,8 @@ void	march_ray(t_game *g, t_raycast *r)
 		if (r->map_x < 0 || r->map_y < 0 || \
 		r->map_x >= g->size.x || r->map_y >= g->size.y)
 			break ;
-		if (g->map[r->map_x][r->map_y] == '1')
+		if (g->map[r->map_x][r->map_y] == '1' || \
+		door_is_closed(g, r->map_x, r->map_y))
 			r->hit = 1;
 	}
 }
@@ -73,9 +74,7 @@ void	raycast(t_game *g)
 		init_raycast(g, &r);
 		march_ray(g, &r);
 		if (r.hit == 1)
-		{
 			draw_raycast(g, &r);
-		}
 		r.x++;
 	}
 }

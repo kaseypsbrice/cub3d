@@ -12,6 +12,8 @@ int	is_wall(t_game *game, double next_pos_x, double next_pos_y)
 		return (1);
 	if (game->map[map_x][map_y] == '1')
 		return (1);
+	if (door_is_closed(game, map_x, map_y))
+		return (1);
 	return (0);
 }
 

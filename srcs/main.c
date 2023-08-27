@@ -15,12 +15,13 @@ int	main(int argc, char **argv)
 
 	check_args(argc, argv);
 	game.dbuf_idx = 0;
+	game.door_idx = 0;
 	game.flash = 0.0;
 	game.mlx = mlx_init();
-	printf("mlx %p\n", game.mlx);
 	game.win = mlx_new_window(game.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
 	game.size = get_map_size(argv[1]);
 	game.map = get_map(argv[1], game.size);
+	init_doors(&game);
 
 	game.player_pos = set_vector(15, 3);
 	game.player_dir = set_vector(1, 0);
@@ -37,6 +38,7 @@ int	main(int argc, char **argv)
 	game.wallw = load_texture(&game, "assets/wall_west.xpm");
 	game.gun[0] = load_texture(&game, "assets/gun0.xpm");
 	game.gun[1] = load_texture(&game, "assets/gun1.xpm");
+	game.door = load_texture(&game, "assets/door.xpm");
 	mlx_hook(game.win, 2, 1L, &keycodes, &game);
 	mlx_hook(game.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx, update, &game);

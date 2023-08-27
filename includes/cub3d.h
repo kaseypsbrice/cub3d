@@ -15,6 +15,7 @@
 # define A			97
 # define S			115
 # define D			100
+# define E			101
 # define ESC		65307
 # define KEY_UP		65362
 # define KEY_DOWN	65364
@@ -26,6 +27,7 @@
 # define SCREEN_HEIGHT 720
 
 # define DEPTH_BUFFER 5000
+# define DOOR_BUFFER 32
 
 typedef struct s_vector
 {
@@ -83,6 +85,13 @@ typedef struct s_render
 	int		draw_end;
 }	t_render;
 
+typedef struct s_door
+{
+	int	x;
+	int	y;
+	int	opened;
+}	t_door;
+
 typedef struct s_game
 {
 	t_vector	size;
@@ -97,11 +106,14 @@ typedef struct s_game
 	t_data		walls;
 	t_data		wallw;
 	t_data		gun[2];
+	t_data		door;
+	t_door		doors[DOOR_BUFFER];
 	double		flash;
 	char		**map;
 	int			mouse_x;
 	int			dbuf_idx;
 	void		*mlx;
+	int			door_idx;
 	void		*win;
 }	t_game;
 
@@ -137,7 +149,7 @@ void		move_back(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *g, double angle);
-int			mouse_rotate_player(int	new_x, int new_y, t_game *game);
+int			mouse_rotate_player(int new_x, int new_y, t_game *game);
 
 /* --- Raycast Functions --- */
 void		raycast(t_game *g);
@@ -150,5 +162,11 @@ void		render(t_game *game);
 void		remove_dbuf(t_game *g, int i);
 void		shift_dbuf(t_game *g, int i);
 void		insert_dbuf(t_game *g, t_render r);
+
+/* --- Door Functions --- */
+void		init_doors(t_game *g);
+void		toggle_door(t_game *g);
+t_door		*get_door(t_game *g, int x, int y);
+int			door_is_closed(t_game *g, int x, int y);
 
 #endif

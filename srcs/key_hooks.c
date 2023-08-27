@@ -18,6 +18,8 @@ int	keycodes(int keycode, t_game *game)
 		rotate_player(game, 0.2);
 	if (keycode == KEY_SPACE && game->flash <= 0.2)
 		game->flash = 1.0;
+	if (keycode == E)
+		toggle_door(game);
 	return (0);
 }
 

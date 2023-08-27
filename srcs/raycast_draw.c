@@ -43,7 +43,9 @@ void	draw_raycast(t_game *g, t_raycast *r)
 		r->wall_x = g->player_pos.y + r->wall_dist * r->ray_dir.y;
 	else
 		r->wall_x = g->player_pos.x + r->wall_dist * r->ray_dir.x;
-	if (r->side == 0 && r->step_x == 1)
+	if (g->map[r->map_x][r->map_y] == 'D')
+		img = g->door;
+	else if (r->side == 0 && r->step_x == 1)
 		img = g->wallw;
 	else if (r->side == 0 && r->step_x == -1)
 		img = g->walle;
