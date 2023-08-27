@@ -31,7 +31,8 @@ void	draw_player(t_game *g, double s)
 		y = ys;
 		while (y <= y2)
 		{
-			my_mlx_pixel_put(&g->ray_img, x, y, COLOR_PLAYER);
+			if (x >= 0 && y >= 0 && x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
+				my_mlx_pixel_put(&g->ray_img, x, y, COLOR_PLAYER);
 			y++;
 		}
 		x++;
