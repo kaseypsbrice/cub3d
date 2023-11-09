@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, 2, 1L, &keycodes, &game);
 	mlx_hook(game.win, 17, 1L << 17, &close_window, &game);
 	mlx_loop_hook(game.mlx, update, &game);
+	printf("a\n");
 	mlx_loop(game.mlx);
 	return (0);
 }

@@ -1,8 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-# include <mlx.h>
 # include <stdio.h>
-# include <X11/Xlib.h>
+# include "../mlx/mlx.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/stat.h>
@@ -11,17 +10,17 @@
 # include <math.h>
 # include "../libft/libft.h"
 
-# define W			119
-# define A			97
-# define S			115
-# define D			100
-# define E			101
-# define ESC		65307
-# define KEY_UP		65362
-# define KEY_DOWN	65364
-# define KEY_LEFT	65361
-# define KEY_RIGHT	65363
-# define KEY_SPACE	32
+# define W			13
+# define A			0
+# define S			1
+# define D			2
+# define E			14
+# define ESC		53
+# define KEY_UP		126
+# define KEY_DOWN	125
+# define KEY_LEFT	123
+# define KEY_RIGHT	124
+# define KEY_SPACE	49
 
 # define SCREEN_WIDTH 1024
 # define SCREEN_HEIGHT 720

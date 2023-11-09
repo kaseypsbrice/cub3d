@@ -31,7 +31,7 @@ OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(OBJDIR), $(OBJ))
 
 # Minilibx 
-MLX_PATH = minilibx-linux/
+MLX_PATH = mlx/
 MLX_NAME = libmlx.a
 MLX = $(MLX_PATH)$(MLX_NAME)
 
@@ -56,7 +56,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	@$(CC) $(FLAGS) -c $< -o $@ $(INCL)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) -o $@ $(INCL) $(LIBFT) $(MLX) -lXext -lX11 -lm
+	@$(CC) $(FLAGS) $(OBJS) -o $@ $(INCL) $(LIBFT) -lm -Lmlx -lmlx -lm -framework OpenGL -framework AppKit
 	@printf "$(YELLOW) | Compiling... $(RESET)\n"
 
 $(LIBFT):
