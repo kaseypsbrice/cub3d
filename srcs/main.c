@@ -24,6 +24,8 @@ int	main(int argc, char **argv)
 	init_doors(&game);
 
 	game.player_pos = set_vector(15, 3);
+	if (!is_map_valid(&game))
+		return (1);
 	game.player_dir = set_vector(1, 0);
 	game.cam_plane = set_vector(0, 0.66);
 

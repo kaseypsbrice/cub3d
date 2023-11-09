@@ -104,6 +104,8 @@ typedef struct s_game
 	t_vector	cam_plane;
 	t_render	dbuf[DEPTH_BUFFER];
 	t_data		ray_img;
+	t_data		ceil_img;
+	t_data		floor_img;
 	t_data		enemy;
 	t_data		walln;
 	t_data		walle;
@@ -116,6 +118,8 @@ typedef struct s_game
 	char		**map;
 	int			mouse_x;
 	int			dbuf_idx;
+	int			floor_c;
+	int			ceil_c;
 	void		*mlx;
 	int			door_idx;
 	void		*win;
@@ -134,6 +138,7 @@ void		print_map(char **map, t_vector size);
 
 /* --- Checkers --- */
 int			check_args(int argc, char **argv);
+int			is_map_valid(t_game *g);
 
 /* --- Key Functions --- */
 int			keycodes(int keycode, t_game *game);
