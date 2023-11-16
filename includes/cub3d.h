@@ -135,9 +135,11 @@ t_vector	get_map_size(const char *path);
 char		**get_map(const char *path, t_vector size);
 void		print_map(char **map, t_vector size);
 
-/* --- Checkers --- */
+/* --- Checkers + Utils --- */
 int			check_args(int argc, char **argv);
 int			is_map_valid(t_game *g);
+int			flood_fill(t_game *g, char **map, int x, int y);
+char		**duplicate_map(t_game *g);
 
 /* --- Key Functions --- */
 int			keycodes(int keycode, t_game *game);

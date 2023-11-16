@@ -24,7 +24,8 @@ SRC = main.c\
 	  depth_buffer.c\
 	  door.c\
 	  minimap.c\
-	  setup.c
+	  setup.c\
+	  checkers_utils.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

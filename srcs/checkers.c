@@ -27,39 +27,30 @@ int	check_args(int argc, char **argv)
 /* Checks for valid arguments.
  * argv[1] must be a .cub file. */
 
-char	**duplicate_map(t_game *g)
+int	check_map_chars(t_game *g)
 {
-	char	**res;
-	int		i;
-	int		j;
+	int		x;
+	int		y;
+	int		ppos_set;
+	char	c;
 
-	res = malloc(g->size.x * sizeof(char **));
-	i = -1;
-	while (++i < g->size.x)
+	x = -1;
+	ppos_set = 0;
+	while (++x < g->size.x)
 	{
-		j = -1;
-		res[i] = malloc(g->size.y * sizeof(char *));
-		while (++j < g->size.y)
-			res[i][j] = g->map[i][j];
+		y = -1;
+		while (++y < g->size.y)
+		{
+			c = g->map[x][y];
+			if (!(c == ' ' || c == '0' || c == '1' || c == 'D' \
+			|| c == 'N' || c == 'S' || c == 'E' || c == 'W'))
+				return (1);
+			if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && ppos_set)
+				return (1);
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+				ppos_set = 1;
+		}
 	}
-	return (res);
-}
-
-int	flood_fill(t_game *g, char **map, int x, int y)
-{
-	if (x >= g->size.x || x < 0 || y >= g->size.y || y < 0)
-		return (1);
-	if (map[x][y] == '1' || map[x][y] == '9')
-		return (0);
-	map[x][y] = '9';
-	if (flood_fill(g, map, x + 1, y))
-		return (1);
-	if (flood_fill(g, map, x - 1, y))
-		return (1);
-	if (flood_fill(g, map, x, y + 1))
-		return (1);
-	if (flood_fill(g, map, x, y - 1))
-		return (1);
 	return (0);
 }
 
@@ -72,6 +63,12 @@ int	is_map_valid(t_game *g)
 	if (flood_fill(g, dup, g->player_pos.x, g->player_pos.y))
 	{
 		ft_putstr_fd("Error\nmap not enclosed by walls\n", 2);
+		return (0);
+	}
+	if (check_map_chars(g))
+	{
+		ft_putstr_fd("Error\ninvalid character in map or \
+duplicate spawn position\n", 2);
 		return (0);
 	}
 	i = -1;
