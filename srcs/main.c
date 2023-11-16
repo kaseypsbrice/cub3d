@@ -16,6 +16,8 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	game.dbuf_idx = 0;
 	game.door_idx = 0;
+	game.color_ceil = 0xFFFF0000;
+	game.color_floor = 0xFF00FF00;
 	game.flash = 0.0;
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
@@ -25,6 +27,8 @@ int	main(int argc, char **argv)
 
 	game.player_pos = set_vector(15, 3);
 	game.player_dir = set_vector(1, 0);
+	if (!is_map_valid(&game))
+		return (1);
 	game.cam_plane = set_vector(0, 0.66);
 
 	game.ray_img.img = mlx_new_image(game.mlx, 1024, 720);

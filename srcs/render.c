@@ -121,6 +121,7 @@ void	render(t_game *game)
 	test.x = SCREEN_WIDTH - 600;
 	test.y = SCREEN_HEIGHT - 450;
 	test.depth = 1;
+	set_background(game);
 	raycast(game);
 	render_dbuf(game);
 	render_sprite(game, test);

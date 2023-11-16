@@ -117,6 +117,8 @@ typedef struct s_game
 	char		**map;
 	int			mouse_x;
 	int			dbuf_idx;
+	int			color_ceil;
+	int			color_floor;
 	void		*mlx;
 	int			door_idx;
 	void		*win;
@@ -135,6 +137,7 @@ void		print_map(char **map, t_vector size);
 
 /* --- Checkers --- */
 int			check_args(int argc, char **argv);
+int			is_map_valid(t_game *g);
 
 /* --- Key Functions --- */
 int			keycodes(int keycode, t_game *game);
@@ -176,5 +179,8 @@ int			door_is_closed(t_game *g, int x, int y);
 
 /* --- Minimap Functions --- */
 void		draw_minimap(t_game *g, t_data img);
+
+/* --- Setup Functions --- */
+void	set_background(t_game *g);
 
 #endif
