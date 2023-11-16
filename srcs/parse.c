@@ -9,6 +9,7 @@ t_vector	_get_map_size(int fd)
 
 	i = 0;
 	size.x = 0;
+	size.y = 0;
 	while (read(fd, &c, 1) > 0)
 	{
 		if (c == '\n')

@@ -105,7 +105,6 @@ typedef struct s_game
 	t_vector	cam_plane;
 	t_render	dbuf[DEPTH_BUFFER];
 	t_data		ray_img;
-	t_data		enemy;
 	t_data		walln;
 	t_data		walle;
 	t_data		walls;
@@ -183,6 +182,7 @@ int			door_is_closed(t_game *g, int x, int y);
 void		draw_minimap(t_game *g, t_data img);
 
 /* --- Setup Functions --- */
-void	set_background(t_game *g);
+void		set_background(t_game *g);
+void		init_game(t_game *g, char **argv);
 
 #endif
