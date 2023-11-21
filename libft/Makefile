@@ -25,7 +25,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	   ft_convert_uxxp.c ft_put_utils.c get_next_line.c \
 	   get_next_line_utils.c ft_lstadd_back.c ft_lstadd_front.c \
 	   ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
-	   ft_lstmap.c ft_lstnew.c ft_lstsize.c ft_strcmp.c
+	   ft_lstmap.c ft_lstnew.c ft_lstsize.c ft_strcmp.c ft_isspace.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

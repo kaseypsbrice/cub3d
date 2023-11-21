@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+FLAGS = #-Wall -Werror -Wextra #-g -fsanitize=address
 
 INCL = -I ./includes/\
        -I ./minilibx-linux/\
@@ -23,7 +23,11 @@ SRC = main.c\
 	  render.c\
 	  depth_buffer.c\
 	  door.c\
-	  minimap.c
+	  minimap.c\
+	  setup.c\
+	  checkers_utils.c\
+	  textures.c # Textures file added
+	  
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/
@@ -31,7 +35,7 @@ OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(OBJDIR), $(OBJ))
 
 # Minilibx 
-MLX_PATH = mlx/
+MLX_PATH = minilibx-linux/
 MLX_NAME = libmlx.a
 MLX = $(MLX_PATH)$(MLX_NAME)
 
@@ -56,7 +60,7 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	@$(CC) $(FLAGS) -c $< -o $@ $(INCL)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) -o $@ $(INCL) $(LIBFT) -lm -Lmlx -lmlx -lm -framework OpenGL -framework AppKit
+	@$(CC) $(FLAGS) $(OBJS) -o $@ $(INCL) $(LIBFT) $(MLX) -lXext -lX11 -lm
 	@printf "$(YELLOW) | Compiling... $(RESET)\n"
 
 $(LIBFT):
