@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stddef.h>
+# include <stdbool.h>
 
 # define BUFF_SIZE 200
 
@@ -97,5 +98,6 @@ t_list	*ft_lstmap(t_list *lst,
 			void *(*f)(void *), void (*del)(void *));
 
 int		ft_strcmp(const char *s1, const char *s2);
+bool	ft_isspace(char c);
 
 #endif

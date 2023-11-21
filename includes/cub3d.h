@@ -9,6 +9,7 @@
 # include <sys/types.h>
 # include <errno.h>
 # include <math.h>
+# include <ctype.h>
 # include "../libft/libft.h"
 
 # define W			119
@@ -33,6 +34,14 @@
 
 # define DEPTH_BUFFER 5000
 # define DOOR_BUFFER 32
+
+typedef struct s_textures
+{
+	char	*so_texture_path;
+	char	*no_texture_path;
+	char	*ea_texture_path;
+	char	*we_texture_path;
+}	t_textures;
 
 typedef struct s_vector
 {
@@ -123,6 +132,16 @@ typedef struct s_game
 	void		*win;
 }	t_game;
 
+/* --- Textures & Experimental Functions --- */
+int		has_element_name(char *line, char *identifier);
+//char	*get_texture_path(char **map, char *identifier);
+char	*get_texture_path(char *line, char *identifier);
+//int	valid_texture_path(char *texture_path);
+void	free_texture_paths(t_textures *textures);
+void	set_textures(char *line, t_textures *textures);
+//int	check_texture_paths(t_textures *textures);
+void	init_textures_2(t_game *game, t_textures *textures, char **map);
+
 /* --- Vector Functions --- */
 t_vector	set_vector(double x, double y);
 t_vector	normalized(t_vector vec);
@@ -183,6 +202,7 @@ void		draw_minimap(t_game *g, t_data img);
 
 /* --- Setup Functions --- */
 void		set_background(t_game *g);
-void		init_game(t_game *g, char **argv);
+//void		init_game(t_game *g, char **argv);
+void	init_game(t_game *g, char **argv, t_textures *textures);
 
 #endif

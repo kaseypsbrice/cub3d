@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+FLAGS = #-Wall -Werror -Wextra #-g -fsanitize=address
 
 INCL = -I ./includes/\
        -I ./minilibx-linux/\
@@ -25,7 +25,9 @@ SRC = main.c\
 	  door.c\
 	  minimap.c\
 	  setup.c\
-	  checkers_utils.c
+	  checkers_utils.c\
+	  textures.c # Textures file added
+	  
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

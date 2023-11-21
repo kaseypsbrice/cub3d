@@ -1,6 +1,5 @@
 #include "cub3d.h"
 
-
 t_vector	_get_map_size(int fd)
 {
 	t_vector	size;
