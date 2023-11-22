@@ -81,11 +81,11 @@ int	is_map_valid(t_game *g)
 	if (check_map_chars(g))
 	{
 		ft_putstr_fd("Error\ninvalid character in map or \
-duplicate/missing spawn position\n", 2);
+duplicate/missing spawn position\n", 2); // Error that needs to be dealt with now that we have textures in the map file.
 		return (0);
 	}
-	dup = duplicate_map(g);
-	if (flood_fill(g, dup, g->player_pos.x, g->player_pos.y))
+	dup = duplicate_map(g); //
+	if (flood_fill(g, dup, g->player_pos.x, g->player_pos.y)) //
 	{
 		ft_putstr_fd("Error\nmap not enclosed by walls\n", 2);
 		return (0);

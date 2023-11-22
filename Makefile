@@ -26,7 +26,8 @@ SRC = main.c\
 	  minimap.c\
 	  setup.c\
 	  checkers_utils.c\
-	  textures.c # Textures file added
+	  textures.c\
+	  textures_utils.c
 	  
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
