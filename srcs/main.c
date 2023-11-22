@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-int	update(t_game *game)
+int	update(t_game *game, t_textures *textures)
 {
-	render(game);
+	render(game, textures);
 	game->flash -= 0.1;
 	if (game->flash < 0.0)
 		game->flash = 0.0;

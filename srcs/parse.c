@@ -18,7 +18,7 @@ t_vector	_get_map_size(int fd)
 			i = 0;
 			size.y += 1;
 		}
-		else
+		else if (c == '1' || c == '0')
 			i++;
 	}
 	close(fd);
@@ -55,7 +55,7 @@ char	**_get_map(int fd, char **map)
 			x = 0;
 			y++;
 		}
-		else
+		else if (c == '1' || c == '0')
 		{
 			map[x][y] = c;
 			x++;

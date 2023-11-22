@@ -41,6 +41,8 @@ typedef struct s_textures
 	char	*no_texture_path;
 	char	*ea_texture_path;
 	char	*we_texture_path;
+	int		ceiling_colour;
+	int		floor_colour;
 }	t_textures;
 
 typedef struct s_vector
@@ -125,8 +127,8 @@ typedef struct s_game
 	char		**map;
 	int			mouse_x;
 	int			dbuf_idx;
-	int			color_ceil;
-	int			color_floor;
+	// int			color_ceil;
+	// int			color_floor;
 	void		*mlx;
 	int			door_idx;
 	void		*win;
@@ -139,6 +141,9 @@ int			valid_texture_path(char *texture_path);
 void		free_texture_paths(t_textures *textures);
 int			check_texture_paths(t_textures *textures);
 void		set_textures(char *line, t_textures *textures);
+void		set_colours(char *line, t_textures *textures);
+int			all_elements_set(t_textures *textures);
+void		read_map_for_textures(const char *path, t_textures *textures);
 void		init_textures_2(t_game *game, t_textures *textures, char **map);
 
 /* --- Vector Functions --- */
@@ -183,7 +188,7 @@ void		raycast(t_game *g);
 void		draw_raycast(t_game *g, t_raycast *r);
 
 /* --- Render Functions --- */
-void		render(t_game *game);
+void		render(t_game *game, t_textures *textures);
 
 /* --- Depth Buffer Functions ---*/
 void		remove_dbuf(t_game *g, int i);
@@ -200,7 +205,7 @@ int			door_is_closed(t_game *g, int x, int y);
 void		draw_minimap(t_game *g, t_data img);
 
 /* --- Setup Functions --- */
-void		set_background(t_game *g);
+void		set_background(t_game *g, t_textures *textures);
 void		init_game(t_game *g, char **argv, t_textures *textures);
 
 #endif

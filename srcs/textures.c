@@ -1,20 +1,5 @@
 #include "cub3d.h"
 
-int has_element_name(char *line, char *identifier)
-{
-    size_t len;
-
-    len = ft_strlen(identifier);
-    if (ft_strncmp(line, identifier, len) == 0 && ft_isspace(line[len]))
-    	return (1);
-    return (0);
-}
-// Checks the line to see if the element is present.
-// Insert the following before the if statement to see how
-// it checks for the identifiers:
-// printf("Checking: line='%s', identifier='%s', len=%zu\n",\
-// line, identifier, len);
-
 char	*get_texture_path(char *line, char *identifier)
 {
     size_t len;
@@ -39,7 +24,7 @@ char	*get_texture_path(char *line, char *identifier)
 }
 // Extracts the texture path based on the identifier
 
-static void	read_map_for_textures(const char *path, t_textures *textures)
+void	read_map_for_textures(const char *path, t_textures *textures)
 {
 	int fd;
 
@@ -54,9 +39,11 @@ static void	read_map_for_textures(const char *path, t_textures *textures)
 	while (line != NULL)
 	{
 		set_textures(line, textures);
-		if (textures->so_texture_path && textures->no_texture_path &&
-			textures->ea_texture_path && textures->we_texture_path)
+		set_colours(line, textures);
+		if (all_elements_set(textures))
 		{
+			printf("Ceiling colour is: %x\n", textures->ceiling_colour);
+			printf("Floor colour is: %x\n", textures->floor_colour);
 			break ;
 		}
 		free(line);
@@ -81,6 +68,21 @@ void	set_textures(char *line, t_textures *textures)
 		textures->ea_texture_path = get_texture_path(line, "EA");
 	else if (has_element_name(line, "WE"))
 		textures->we_texture_path = get_texture_path(line, "WE");
+}
+
+void	set_colours(char *line, t_textures *textures)
+{
+	char	*colour;
+	if (has_element_name(line, "C"))
+	{
+		colour = get_texture_path(line, "C");
+		textures->ceiling_colour = str_to_hex(colour);
+	}
+	else if (has_element_name(line, "F"))
+	{
+		colour = get_texture_path(line, "F");
+		textures->floor_colour = str_to_hex(colour);
+	}
 }
 
 void	init_textures_2(t_game *game, t_textures *textures, char **map)

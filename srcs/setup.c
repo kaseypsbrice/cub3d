@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	set_background(t_game *g)
+void	set_background(t_game *g, t_textures *textures)
 {
 	int	x;
 	int	y;
@@ -10,14 +10,14 @@ void	set_background(t_game *g)
 	{
 		x = -1;
 		while (++x < SCREEN_WIDTH)
-			my_mlx_pixel_put(&g->ray_img, x, y, g->color_ceil);
+			my_mlx_pixel_put(&g->ray_img, x, y, textures->ceiling_colour);
 	}
 	y--;
 	while (++y < SCREEN_HEIGHT)
 	{
 		x = -1;
 		while (++x < SCREEN_WIDTH)
-			my_mlx_pixel_put(&g->ray_img, x, y, g->color_floor);
+			my_mlx_pixel_put(&g->ray_img, x, y, textures->floor_colour);
 	}
 }
 
@@ -42,8 +42,8 @@ void	init_game(t_game *g, char **argv, t_textures *textures)
 	g->win = mlx_new_window(g->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
 	g->dbuf_idx = 0;
 	g->door_idx = 0;
-	g->color_ceil = 0xFF700000; // move to parse
-	g->color_floor = 0xFF007000; // move to parse
+	// g->color_ceil = 0xFF700000; // move to parse
+	// g->color_floor = 0xFF007000; // move to parse
 	g->flash = 0.0;
 	g->size = get_map_size(argv[1]);
 	g->map = get_map(argv[1], g->size);

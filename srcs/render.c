@@ -111,7 +111,7 @@ void	render_dbuf(t_game *game)
 	game->dbuf_idx = 0;
 }
 
-void	render(t_game *game)
+void	render(t_game *game, t_textures *textures)
 {
 	t_render	test;
 
@@ -121,7 +121,7 @@ void	render(t_game *game)
 	test.x = SCREEN_WIDTH - 600;
 	test.y = SCREEN_HEIGHT - 450;
 	test.depth = 1;
-	set_background(game);
+	set_background(game, textures);
 	raycast(game);
 	render_dbuf(game);
 	render_sprite(game, test);
