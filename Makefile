@@ -23,7 +23,11 @@ SRC = main.c\
 	  render.c\
 	  depth_buffer.c\
 	  door.c\
-	  minimap.c
+	  minimap.c\
+	  setup.c\
+	  checkers_utils.c\
+	  textures.c\
+	  textures_utils.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

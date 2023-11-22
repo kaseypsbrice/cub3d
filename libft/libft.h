@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrice <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kbrice <kbrice@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:56:51 by kbrice            #+#    #+#             */
-/*   Updated: 2023/01/31 12:02:01 by kbrice           ###   ########.fr       */
+/*   Updated: 2023/11/23 09:23:58 by kbrice           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stddef.h>
+# include <stdbool.h>
 
 # define BUFF_SIZE 200
 
@@ -97,5 +98,7 @@ t_list	*ft_lstmap(t_list *lst,
 			void *(*f)(void *), void (*del)(void *));
 
 int		ft_strcmp(const char *s1, const char *s2);
+bool	ft_isspace(char c);
+int		str_to_hex(char *hexstr);
 
 #endif

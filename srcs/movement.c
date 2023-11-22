@@ -76,7 +76,6 @@ void	rotate_player(t_game *g, double angle)
 	double		ocx;
 	t_vector	m;
 
-	printf("rotated\n");
 	cos = cosh(angle);
 	sin = sinh(angle);
 	m = set_vector(mag(g->player_dir), mag(g->cam_plane));
