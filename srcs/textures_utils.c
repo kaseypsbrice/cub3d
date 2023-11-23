@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbrice <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 12:47:37 by kbrice            #+#    #+#             */
+/*   Updated: 2023/11/23 12:47:42 by kbrice           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int has_element_name(char *line, char *identifier)
+int	has_element_name(char *line, char *identifier)
 {
-    size_t len;
+	size_t	len;
 
-    len = ft_strlen(identifier);
-    if (ft_strncmp(line, identifier, len) == 0 && ft_isspace(line[len]))
-    	return (1);
-    return (0);
+	len = ft_strlen(identifier);
+	if (ft_strncmp(line, identifier, len) == 0 && ft_isspace(line[len]))
+		return (1);
+	return (0);
 }
 // Checks the line to see if the element is present.
 // Insert the following before the if statement to see how
@@ -31,9 +43,9 @@ int	valid_texture_path(char *texture_path)
 
 void	check_texture_paths(t_textures *textures)
 {
-	if (!valid_texture_path(textures->so_texture_path) ||
-		!valid_texture_path(textures->no_texture_path) ||
-		!valid_texture_path(textures->ea_texture_path) ||
+	if (!valid_texture_path(textures->so_texture_path) || \
+		!valid_texture_path(textures->no_texture_path) || \
+		!valid_texture_path(textures->ea_texture_path) || \
 		!valid_texture_path(textures->we_texture_path))
 	{
 		free_texture_paths(textures);
@@ -52,8 +64,8 @@ void	free_texture_paths(t_textures *textures)
 
 int	all_elements_set(t_textures *textures)
 {
-	if (textures->so_texture_path && textures->no_texture_path &&
-	textures->ea_texture_path && textures->we_texture_path &&
+	if (textures->so_texture_path && textures->no_texture_path && \
+	textures->ea_texture_path && textures->we_texture_path && \
 	textures->ceiling_colour && textures->floor_colour)
 		return (1);
 	return (0);

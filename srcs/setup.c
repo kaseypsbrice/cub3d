@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbrice <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 12:49:23 by kbrice            #+#    #+#             */
+/*   Updated: 2023/11/23 12:49:26 by kbrice           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	set_background(t_game *g, t_textures *textures)
@@ -35,8 +47,6 @@ void	init_game(t_game *g, char **argv, t_textures *textures)
 	g->win = mlx_new_window(g->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
 	g->dbuf_idx = 0;
 	g->door_idx = 0;
-	// g->color_ceil = 0xFF700000; // move to parse
-	// g->color_floor = 0xFF007000; // move to parse
 	g->flash = 0.0;
 	init_textures(g);
 	init_textures_2(g, textures, &argv[1]);
