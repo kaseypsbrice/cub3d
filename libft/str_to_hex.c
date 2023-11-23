@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_to_hex.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbrice <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 12:39:48 by kbrice            #+#    #+#             */
+/*   Updated: 2023/11/23 12:40:32 by kbrice           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	char_to_hex(char hex)
@@ -8,7 +20,7 @@ static int	char_to_hex(char hex)
 		return (ft_tolower(hex) - 'a' + 10);
 }
 
-int str_to_hex(char *hexstr)
+int	str_to_hex(char *hexstr)
 {
 	int		res;
 	char	current;
