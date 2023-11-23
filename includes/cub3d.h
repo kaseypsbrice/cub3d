@@ -135,6 +135,8 @@ typedef struct s_game
 	void		*win;
 }	t_game;
 
+int			min(int a, int b);
+
 /* --- Textures & Colour Functions --- */
 int			convert_rgb(char *colours);
 int			has_element_name(char *line, char *identifier);

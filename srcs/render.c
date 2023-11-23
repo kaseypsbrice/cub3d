@@ -35,12 +35,9 @@ int	adjust_color(t_game *game, t_render r, int color)
 	red += 60 / pow(r.depth * 0.4, 1.4) * game->flash;
 	green += 60 / pow(r.depth * 0.4, 1.4) * game->flash;
 	blue += 35 / pow(r.depth * 0.4, 1.4) * game->flash;
-	if (red > 0xFF)
-		red = 0xFF;
-	if (blue > 0xFF)
-		blue = 0xFF;
-	if (green > 0xFF)
-		green = 0xFF;
+	red = min(red, 0xFF);
+	blue = min(blue, 0xFF);
+	green = min(green, 0xFF);
 	return (red << 16 | green << 8 | blue);
 }
 
@@ -50,13 +47,12 @@ void	render_ray(t_game *g, t_render r)
 	unsigned int	color;
 
 	r.y = -1;
-	//printf("ceiling: %d\n", textures->ceiling_colour);
 	while (++r.y < r.draw_start)
 		my_mlx_pixel_put(&g->ray_img, r.x, r.y, g->textures.ceiling_colour);
 	while (r.y <= r.draw_end)
 	{
 		r.tex_y = (double)(r.y - r.draw_start) / \
-		(double)(r.draw_end - r.draw_start) * r.tex.height;
+		(double)(r.draw_end - r.draw_start) *r.tex.height;
 		color = adjust_color(g, r, \
 		image_pixel_get_color(&r.tex, r.tex_x, r.tex_y));
 		my_mlx_pixel_put(&g->ray_img, r.x, r.y, color);
@@ -104,7 +100,6 @@ void	render_sprite(t_game *game, t_render r)
 *  depth * 0.1 is an arbitrary value. The t_render
 *  object should likely have a scale property
 */
-
 
 // Renders the depth buffer
 void	render_dbuf(t_game *game)

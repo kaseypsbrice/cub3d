@@ -12,6 +12,13 @@
 
 #include "cub3d.h"
 
+int	min(int a, int b)
+{
+	if (a <= b)
+		return (a);
+	return (b);
+}
+
 int	update(t_game *game)
 {
 	render(game);
