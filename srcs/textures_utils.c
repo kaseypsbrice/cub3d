@@ -6,7 +6,7 @@
 /*   By: kbrice <kbrice@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:47:37 by kbrice            #+#    #+#             */
-/*   Updated: 2023/11/23 13:11:22 by kbrice           ###   ########.fr       */
+/*   Updated: 2023/11/23 13:30:20 by kbrice           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	valid_texture_path(char *texture_path)
 
 void	check_texture_paths(t_game *g)
 {
-	if (!valid_texture_path(g->textures.so_texture_path) ||
-		!valid_texture_path(g->textures.no_texture_path) ||
-		!valid_texture_path(g->textures.ea_texture_path) ||
+	if (!valid_texture_path(g->textures.so_texture_path) || \
+		!valid_texture_path(g->textures.no_texture_path) || \
+		!valid_texture_path(g->textures.ea_texture_path) || \
 		!valid_texture_path(g->textures.we_texture_path))
 	{
 		free_texture_paths(g);
@@ -64,8 +64,8 @@ void	free_texture_paths(t_game *g)
 
 int	all_elements_set(t_game *g)
 {
-	if (g->textures.so_texture_path && g->textures.no_texture_path &&
-	g->textures.ea_texture_path && g->textures.we_texture_path &&
+	if (g->textures.so_texture_path && g->textures.no_texture_path && \
+	g->textures.ea_texture_path && g->textures.we_texture_path && \
 	g->textures.ceiling_colour && g->textures.floor_colour)
 		return (1);
 	return (0);
