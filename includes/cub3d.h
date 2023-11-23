@@ -41,6 +41,7 @@ typedef struct s_textures
 	char	*we_texture_path;
 	int		ceiling_colour;
 	int		floor_colour;
+	int		map_file_index;
 }	t_textures;
 
 typedef struct s_vector
@@ -114,6 +115,8 @@ typedef struct s_game
 	t_vector	cam_plane;
 	t_render	dbuf[DEPTH_BUFFER];
 	t_data		ray_img;
+	t_data		map_img;
+	t_data		bg_img;
 	t_data		walln;
 	t_data		walle;
 	t_data		walls;
@@ -125,8 +128,7 @@ typedef struct s_game
 	char		**map;
 	int			mouse_x;
 	int			dbuf_idx;
-	// int			color_ceil;
-	// int			color_floor;
+	int			map_file_index;
 	void		*mlx;
 	int			door_idx;
 	void		*win;
@@ -143,6 +145,7 @@ void		set_colours(char *line, t_textures *textures);
 int			all_elements_set(t_textures *textures);
 void		read_map_for_textures(const char *path, t_textures *textures);
 void		init_textures_2(t_game *game, t_textures *textures, char **map);
+int			increment_map_file_index(t_textures *textures, char *line);
 
 /* --- Vector Functions --- */
 t_vector	set_vector(double x, double y);
@@ -151,8 +154,9 @@ t_vector	match_rotation(t_vector from, t_vector to);
 t_vector	multiply(t_vector vec, double m);
 double		mag(t_vector vec);
 
-t_vector	get_map_size(const char *path);
-char		**get_map(const char *path, t_vector size);
+/* --- Parse Functions --- */
+t_vector	get_map_size(const char *path, int map_file_index);
+char		**get_map(const char *path, t_vector size, int map_file_index);
 void		print_map(char **map, t_vector size);
 
 /* --- Checkers + Utils --- */

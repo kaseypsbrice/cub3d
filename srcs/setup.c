@@ -5,32 +5,25 @@ void	set_background(t_game *g, t_textures *textures)
 	int	x;
 	int	y;
 
+	(void)textures;
 	y = -1;
 	while (++y < SCREEN_HEIGHT / 2)
 	{
 		x = -1;
 		while (++x < SCREEN_WIDTH)
-			my_mlx_pixel_put(&g->ray_img, x, y, textures->ceiling_colour);
+			my_mlx_pixel_put(&g->ray_img, x, y, 0x000000);
 	}
 	y--;
 	while (++y < SCREEN_HEIGHT)
 	{
 		x = -1;
 		while (++x < SCREEN_WIDTH)
-			my_mlx_pixel_put(&g->ray_img, x, y, textures->floor_colour);
+			my_mlx_pixel_put(&g->ray_img, x, y, 0x000000);
 	}
 }
 
 void	init_textures(t_game *g)
 {
-	g->ray_img.img = mlx_new_image(g->mlx, 1024, 720);
-	g->ray_img.addr = mlx_get_data_addr(g->ray_img.img, \
-	&g->ray_img.bits_per_pixel, &g->ray_img.line_length, \
-	&g->ray_img.endian);
-//	g->walln = load_texture(g, "assets/wall_north.xpm"); // move to parse
-//	g->walle = load_texture(g, "assets/wall_east.xpm"); // move to parse
-//	g->walls = load_texture(g, "assets/wall_south.xpm"); // move to parse
-//	g->wallw = load_texture(g, "assets/wall_west.xpm"); // move to parse
 	g->gun[0] = load_texture(g, "assets/gun0.xpm");
 	g->gun[1] = load_texture(g, "assets/gun1.xpm");
 	g->door = load_texture(g, "assets/door.xpm");
@@ -45,9 +38,10 @@ void	init_game(t_game *g, char **argv, t_textures *textures)
 	// g->color_ceil = 0xFF700000; // move to parse
 	// g->color_floor = 0xFF007000; // move to parse
 	g->flash = 0.0;
-	g->size = get_map_size(argv[1]);
-	g->map = get_map(argv[1], g->size);
-	init_doors(g);
 	init_textures(g);
 	init_textures_2(g, textures, &argv[1]);
+	g->size = get_map_size(argv[1], g->map_file_index);
+	g->map = get_map(argv[1], g->size, g->map_file_index);
+	print_map(g->map, g->size);
+	init_doors(g);
 }

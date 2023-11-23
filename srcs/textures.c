@@ -18,6 +18,7 @@ char	*get_texture_path(char *line, char *identifier)
             texture_path[path_len - 1] = '\0';
             path_len--;
         }
+		printf("id: %s path: %s\n", identifier, texture_path);
         return texture_path;
     }
     return NULL;
@@ -28,6 +29,7 @@ void	read_map_for_textures(const char *path, t_textures *textures)
 {
 	int fd;
 
+	textures->map_file_index = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
@@ -38,6 +40,8 @@ void	read_map_for_textures(const char *path, t_textures *textures)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		if (increment_map_file_index(textures, line))
+			break ;
 		set_textures(line, textures);
 		set_colours(line, textures);
 		if (all_elements_set(textures))
@@ -93,4 +97,5 @@ void	init_textures_2(t_game *game, t_textures *textures, char **map)
 	game->walls = load_texture(game, textures->so_texture_path);
 	game->walle = load_texture(game, textures->ea_texture_path);
 	game->wallw = load_texture(game, textures->we_texture_path);
+	game->map_file_index = textures->map_file_index;
 }

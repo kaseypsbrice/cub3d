@@ -27,7 +27,8 @@ SRC = main.c\
 	  setup.c\
 	  checkers_utils.c\
 	  textures.c\
-	  textures_utils.c
+	  textures_utils.c\
+	  textures_utils_2.c
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 OBJDIR = ./objects/

@@ -14,11 +14,14 @@
 */
 
 // Renders a ray to the game's ray_img image
-void	render_ray(t_game *game, t_render r)
+void	render_ray(t_game *game, t_render r, t_textures *textures)
 {
 	unsigned int	color;
 
-	r.y = r.draw_start;
+	(void)textures;
+	r.y = -1;
+	while (++r.y < r.draw_start)
+		my_mlx_pixel_put(&game->ray_img, r.x, r.y, 0xFF0000);
 	while (r.y <= r.draw_end)
 	{
 		r.tex_y = (double)(r.y - r.draw_start) / \
@@ -51,6 +54,9 @@ void	render_ray(t_game *game, t_render r)
 		my_mlx_pixel_put(&game->ray_img, r.x, r.y, color);
 		r.y++;
 	}
+	r.y--;
+	while (++r.y < SCREEN_HEIGHT)
+		my_mlx_pixel_put(&game->ray_img, r.x, r.y, 0x00FF00);
 }
 
 // Copies a sprite onto the game's ray_img image
@@ -93,7 +99,7 @@ void	render_sprite(t_game *game, t_render r)
 
 
 // Renders the depth buffer
-void	render_dbuf(t_game *game)
+void	render_dbuf(t_game *game, t_textures *textures)
 {
 	int			i;
 	t_render	r;
@@ -103,7 +109,7 @@ void	render_dbuf(t_game *game)
 	{
 		r = game->dbuf[i];
 		if (r.type == RAY)
-			render_ray(game, r);
+			render_ray(game, r, textures);
 		else
 			render_sprite(game, r);
 		i++;
@@ -115,20 +121,24 @@ void	render(t_game *game, t_textures *textures)
 {
 	t_render	test;
 
+	game->ray_img.img = mlx_new_image(game->mlx, 1024, 720);
+	game->ray_img.addr = mlx_get_data_addr(game->ray_img.img, \
+	&game->ray_img.bits_per_pixel, &game->ray_img.line_length, \
+	&game->ray_img.endian);
 	test.tex = game->gun[0];
 	if (game->flash >= 0.6)
 		test.tex = game->gun[1];
 	test.x = SCREEN_WIDTH - 600;
 	test.y = SCREEN_HEIGHT - 450;
 	test.depth = 1;
-	set_background(game, textures);
+	//set_background(game, textures);
 	raycast(game);
-	render_dbuf(game);
+	render_dbuf(game, textures);
 	render_sprite(game, test);
 	draw_minimap(game, game->ray_img);
 	mlx_put_image_to_window(game->mlx, game->win, game->ray_img.img, 0, 0);
 	mlx_destroy_image(game->mlx, game->ray_img.img);
-	game->ray_img.img = mlx_new_image(game->mlx, 1024, 720);
+	//game->ray_img.img = mlx_new_image(game->mlx, 1024, 720);
 }
 /* Fills the depth buffer with raycasts and sprites and
  * draws them from furthest to closest to the ray_img.
