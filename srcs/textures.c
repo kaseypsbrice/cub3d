@@ -77,15 +77,18 @@ void	set_textures(char *line, t_textures *textures)
 void	set_colours(char *line, t_textures *textures)
 {
 	char	*colour;
+
 	if (has_element_name(line, "C"))
 	{
 		colour = get_texture_path(line, "C");
-		textures->ceiling_colour = str_to_hex(colour);
+		textures->ceiling_colour = convert_rgb(colour);
+		printf("C RGB int: %d\n", textures->ceiling_colour);
 	}
 	else if (has_element_name(line, "F"))
 	{
 		colour = get_texture_path(line, "F");
-		textures->floor_colour = str_to_hex(colour);
+		textures->floor_colour = convert_rgb(colour);
+		printf("F RGB int: %d\n", textures->floor_colour);
 	}
 }
 
@@ -99,3 +102,32 @@ void	init_textures_2(t_game *game, t_textures *textures, char **map)
 	game->wallw = load_texture(game, textures->we_texture_path);
 	game->map_file_index = textures->map_file_index;
 }
+
+int	convert_rgb(char *colours)
+{
+	char	**split;
+	int		i;
+	int		rgb[3];
+	int		res;
+
+	i = 0;
+	split = ft_split(colours, ',');
+	while (split[i])
+	{
+		rgb[i] = ft_atoi(split[i]);
+		i++;
+	}
+	if (i == 3)
+	{
+		res = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+		return (res);
+	}
+	else if (i > 3 || i < 3)
+	{
+		printf("Error\nIncorrect colour input\n");
+		return (1);
+	}
+	return (0);
+}
+// For converting colour rgbs to integers:
+// (220 << 16) | (100 << 8) | 0

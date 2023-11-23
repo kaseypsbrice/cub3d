@@ -21,7 +21,7 @@ void	render_ray(t_game *game, t_render r, t_textures *textures)
 	(void)textures;
 	r.y = -1;
 	while (++r.y < r.draw_start)
-		my_mlx_pixel_put(&game->ray_img, r.x, r.y, 0xFF0000);
+		my_mlx_pixel_put(&game->ray_img, r.x, r.y, 14443520);
 	while (r.y <= r.draw_end)
 	{
 		r.tex_y = (double)(r.y - r.draw_start) / \
@@ -56,7 +56,7 @@ void	render_ray(t_game *game, t_render r, t_textures *textures)
 	}
 	r.y--;
 	while (++r.y < SCREEN_HEIGHT)
-		my_mlx_pixel_put(&game->ray_img, r.x, r.y, 0x00FF00);
+		my_mlx_pixel_put(&game->ray_img, r.x, r.y, 14753280);
 }
 
 // Copies a sprite onto the game's ray_img image

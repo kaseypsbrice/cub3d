@@ -135,6 +135,7 @@ typedef struct s_game
 }	t_game;
 
 /* --- Textures & Experimental Functions --- */
+int			convert_rgb(char *colours);
 int			has_element_name(char *line, char *identifier);
 char		*get_texture_path(char *line, char *identifier);
 int			valid_texture_path(char *texture_path);
@@ -183,7 +184,7 @@ void		move_back(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *g, double angle);
-int			mouse_rotate_player(int new_x, int new_y, t_game *game);
+int			mouse_rotate_player(int	new_x, t_game *game);
 
 /* --- Raycast Functions --- */
 void		raycast(t_game *g);

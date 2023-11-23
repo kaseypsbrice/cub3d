@@ -27,3 +27,5 @@ int	main(int argc, char **argv)
 
 	return (0);
 }
+//For mouse movements:
+//mlx_hook(game.win, 06, (1L<<6), mouse_rotate_player, &game);

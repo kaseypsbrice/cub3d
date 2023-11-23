@@ -17,20 +17,19 @@ int	is_wall(t_game *game, double next_pos_x, double next_pos_y)
 	return (0);
 }
 
-/*
-int	mouse_rotate_player(int	new_x, t_game *game)
-{
-	int		hz_movement;
-	double	rotation_speed;
-	double	angle_x;
+// int	mouse_rotate_player(int	new_x, t_game *game)
+// {
+// 	int		hz_movement;
+// 	double	rotation_speed;
+// 	double	angle_x;
 
-	hz_movement = new_x - game->mouse_x;
-	rotation_speed = 0.01;
-	angle_x = rotation_speed * hz_movement;
+// 	hz_movement = new_x - game->mouse_x;
+// 	rotation_speed = 0.01;
+// 	angle_x = rotation_speed * hz_movement;
 
-	game->mouse_x = new_x;
-	rotate_player(game, angle_x);
-}*/
+// 	game->mouse_x = new_x;
+// 	rotate_player(game, angle_x);
+// }
 /* Determines how far the mouse cursor has moved horizontally
  * since the last recorded position and updates the player's
  * POV according to the rotation angle.
