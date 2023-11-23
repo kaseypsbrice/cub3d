@@ -25,11 +25,11 @@ char	*get_texture_path(char *line, char *identifier)
 }
 // Extracts the texture path based on the identifier
 
-void	read_map_for_textures(const char *path, t_textures *textures)
+void	read_map_for_textures(const char *path, t_game *g)
 {
 	int fd;
 
-	textures->map_file_index = 0;
+	g->map_file_index = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
@@ -40,14 +40,14 @@ void	read_map_for_textures(const char *path, t_textures *textures)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (increment_map_file_index(textures, line))
+		if (increment_map_file_index(g, line))
 			break ;
-		set_textures(line, textures);
-		set_colours(line, textures);
-		if (all_elements_set(textures))
+		set_textures(line, g);
+		set_colours(line, g);
+		if (all_elements_set(g))
 		{
-			printf("Ceiling colour is: %x\n", textures->ceiling_colour);
-			printf("Floor colour is: %x\n", textures->floor_colour);
+			printf("Ceiling colour is: %d\n", g->textures.ceiling_colour);
+			printf("Floor colour is: %d\n", g->textures.floor_colour);
 			break ;
 		}
 		free(line);
@@ -62,45 +62,44 @@ void	read_map_for_textures(const char *path, t_textures *textures)
 // printf("East path: %s\n", textures->ea_texture_path);
 // printf("West path: %s\n", textures->we_texture_path);
 
-void	set_textures(char *line, t_textures *textures)
+void	set_textures(char *line, t_game *g)
 {
 	if (has_element_name(line, "NO"))
-		textures->no_texture_path = get_texture_path(line, "NO");
+		g->textures.no_texture_path = get_texture_path(line, "NO");
 	else if (has_element_name(line, "SO"))
-		textures->so_texture_path = get_texture_path(line, "SO");
+		g->textures.so_texture_path = get_texture_path(line, "SO");
 	else if (has_element_name(line, "EA"))
-		textures->ea_texture_path = get_texture_path(line, "EA");
+		g->textures.ea_texture_path = get_texture_path(line, "EA");
 	else if (has_element_name(line, "WE"))
-		textures->we_texture_path = get_texture_path(line, "WE");
+		g->textures.we_texture_path = get_texture_path(line, "WE");
 }
 
-void	set_colours(char *line, t_textures *textures)
+void	set_colours(char *line, t_game *g)
 {
 	char	*colour;
 
 	if (has_element_name(line, "C"))
 	{
 		colour = get_texture_path(line, "C");
-		textures->ceiling_colour = convert_rgb(colour);
-		printf("C RGB int: %d\n", textures->ceiling_colour);
+		g->textures.ceiling_colour = convert_rgb(colour);
+		printf("C RGB int: %d\n", g->textures.ceiling_colour);
 	}
 	else if (has_element_name(line, "F"))
 	{
 		colour = get_texture_path(line, "F");
-		textures->floor_colour = convert_rgb(colour);
-		printf("F RGB int: %d\n", textures->floor_colour);
+		g->textures.floor_colour = convert_rgb(colour);
+		printf("F RGB int: %d\n", g->textures.floor_colour);
 	}
 }
 
-void	init_textures_2(t_game *game, t_textures *textures, char **map)
+void	init_textures_2(t_game *g, char **map)
 {
-	read_map_for_textures(*map, textures);
-	check_texture_paths(textures);
-	game->walln = load_texture(game, textures->no_texture_path);
-	game->walls = load_texture(game, textures->so_texture_path);
-	game->walle = load_texture(game, textures->ea_texture_path);
-	game->wallw = load_texture(game, textures->we_texture_path);
-	game->map_file_index = textures->map_file_index;
+	read_map_for_textures(*map, g);
+	check_texture_paths(g);
+	g->walln = load_texture(g, g->textures.no_texture_path);
+	g->walls = load_texture(g, g->textures.so_texture_path);
+	g->walle = load_texture(g, g->textures.ea_texture_path);
+	g->wallw = load_texture(g, g->textures.we_texture_path);
 }
 
 int	convert_rgb(char *colours)

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int	increment_map_file_index(t_textures *textures, char *line)
+int	increment_map_file_index(t_game *g, char *line)
 {
 	int	i;
 
@@ -12,7 +12,7 @@ int	increment_map_file_index(t_textures *textures, char *line)
 		free(line);
 		return (1);
 	}
-	textures->map_file_index += ft_strlen(line);
-	printf("%d\n", textures->map_file_index);
+	g->map_file_index += ft_strlen(line);
+	printf("%d\n", g->map_file_index);
 	return (0);
 }

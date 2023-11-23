@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-int	update(t_game *game, t_textures *textures)
+int	update(t_game *game)
 {
-	render(game, textures);
+	render(game);
 	game->flash -= 0.1;
 	if (game->flash < 0.0)
 		game->flash = 0.0;
@@ -12,10 +12,9 @@ int	update(t_game *game, t_textures *textures)
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	t_textures textures;
 
 	check_args(argc, argv);
-	init_game(&game, argv, &textures);
+	init_game(&game, argv);
 	if (!is_map_valid(&game))
 		return (1);
 	mlx_hook(game.win, 2, 1L, &keycodes, &game);

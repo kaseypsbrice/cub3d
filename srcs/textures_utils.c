@@ -29,32 +29,32 @@ int	valid_texture_path(char *texture_path)
 	return (1);
 }
 
-void	check_texture_paths(t_textures *textures)
+void	check_texture_paths(t_game *g)
 {
-	if (!valid_texture_path(textures->so_texture_path) ||
-		!valid_texture_path(textures->no_texture_path) ||
-		!valid_texture_path(textures->ea_texture_path) ||
-		!valid_texture_path(textures->we_texture_path))
+	if (!valid_texture_path(g->textures.so_texture_path) ||
+		!valid_texture_path(g->textures.no_texture_path) ||
+		!valid_texture_path(g->textures.ea_texture_path) ||
+		!valid_texture_path(g->textures.we_texture_path))
 	{
-		free_texture_paths(textures);
+		free_texture_paths(g);
 		printf("Error\nNot all texture paths are valid or set.\
 		Freed texture paths\n");
 	}
 }
 
-void	free_texture_paths(t_textures *textures)
+void	free_texture_paths(t_game *g)
 {
-	free(textures->so_texture_path);
-	free(textures->no_texture_path);
-	free(textures->ea_texture_path);
-	free(textures->we_texture_path);
+	free(g->textures.so_texture_path);
+	free(g->textures.no_texture_path);
+	free(g->textures.ea_texture_path);
+	free(g->textures.we_texture_path);
 }
 
-int	all_elements_set(t_textures *textures)
+int	all_elements_set(t_game *g)
 {
-	if (textures->so_texture_path && textures->no_texture_path &&
-	textures->ea_texture_path && textures->we_texture_path &&
-	textures->ceiling_colour && textures->floor_colour)
+	if (g->textures.so_texture_path && g->textures.no_texture_path &&
+	g->textures.ea_texture_path && g->textures.we_texture_path &&
+	g->textures.ceiling_colour && g->textures.floor_colour)
 		return (1);
 	return (0);
 }

@@ -109,6 +109,7 @@ typedef struct s_door
 
 typedef struct s_game
 {
+	t_textures	textures;
 	t_vector	size;
 	t_vector	player_pos;
 	t_vector	player_dir;
@@ -139,14 +140,14 @@ int			convert_rgb(char *colours);
 int			has_element_name(char *line, char *identifier);
 char		*get_texture_path(char *line, char *identifier);
 int			valid_texture_path(char *texture_path);
-void		free_texture_paths(t_textures *textures);
-void		check_texture_paths(t_textures *textures);
-void		set_textures(char *line, t_textures *textures);
-void		set_colours(char *line, t_textures *textures);
-int			all_elements_set(t_textures *textures);
-void		read_map_for_textures(const char *path, t_textures *textures);
-void		init_textures_2(t_game *game, t_textures *textures, char **map);
-int			increment_map_file_index(t_textures *textures, char *line);
+void		free_texture_paths(t_game *g);
+void		check_texture_paths(t_game *g);
+void		set_textures(char *line, t_game *g);
+void		set_colours(char *line, t_game *g);
+int			all_elements_set(t_game *g);
+void		read_map_for_textures(const char *path, t_game *g);
+void		init_textures_2(t_game *g, char **map);
+int			increment_map_file_index(t_game *g, char *line);
 
 /* --- Vector Functions --- */
 t_vector	set_vector(double x, double y);
@@ -191,7 +192,7 @@ void		raycast(t_game *g);
 void		draw_raycast(t_game *g, t_raycast *r);
 
 /* --- Render Functions --- */
-void		render(t_game *game, t_textures *textures);
+void		render(t_game *game);
 
 /* --- Depth Buffer Functions ---*/
 void		remove_dbuf(t_game *g, int i);
@@ -209,6 +210,6 @@ void		draw_minimap(t_game *g, t_data img);
 
 /* --- Setup Functions --- */
 void		set_background(t_game *g, t_textures *textures);
-void		init_game(t_game *g, char **argv, t_textures *textures);
+void		init_game(t_game *g, char **argv);
 
 #endif

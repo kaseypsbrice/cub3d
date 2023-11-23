@@ -29,7 +29,7 @@ void	init_textures(t_game *g)
 	g->door = load_texture(g, "assets/door.xpm");
 }
 
-void	init_game(t_game *g, char **argv, t_textures *textures)
+void	init_game(t_game *g, char **argv)
 {
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
@@ -39,7 +39,7 @@ void	init_game(t_game *g, char **argv, t_textures *textures)
 	// g->color_floor = 0xFF007000; // move to parse
 	g->flash = 0.0;
 	init_textures(g);
-	init_textures_2(g, textures, &argv[1]);
+	init_textures_2(g, &argv[1]);
 	g->size = get_map_size(argv[1], g->map_file_index);
 	g->map = get_map(argv[1], g->size, g->map_file_index);
 	print_map(g->map, g->size);
