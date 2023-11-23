@@ -55,7 +55,7 @@ int	convert_rgb(char *colours)
 	else if (i > 3 || i < 3)
 	{
 		printf("Error\nIncorrect colour input\n");
-		return (1);
+		exit(1);
 	}
 	return (0);
 }
