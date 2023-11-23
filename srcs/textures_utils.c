@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrice <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kbrice <kbrice@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:47:37 by kbrice            #+#    #+#             */
-/*   Updated: 2023/11/23 12:47:42 by kbrice           ###   ########.fr       */
+/*   Updated: 2023/11/23 13:11:22 by kbrice           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	check_texture_paths(t_textures *textures)
 		!valid_texture_path(textures->we_texture_path))
 	{
 		free_texture_paths(textures);
-		printf("Error\nNot all texture paths are valid or set.\
-		Freed texture paths\n");
+		printf("Error\nNot all texture paths are valid or set. \
+Freed texture paths.\n");
 	}
 }
 

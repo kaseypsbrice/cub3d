@@ -134,7 +134,7 @@ typedef struct s_game
 	void		*win;
 }	t_game;
 
-/* --- Textures & Experimental Functions --- */
+/* --- Textures & Colour Functions --- */
 int			convert_rgb(char *colours);
 int			has_element_name(char *line, char *identifier);
 char		*get_texture_path(char *line, char *identifier);
@@ -206,6 +206,9 @@ int			door_is_closed(t_game *g, int x, int y);
 
 /* --- Minimap Functions --- */
 void		draw_minimap(t_game *g, t_data img);
+void		draw_player(t_game *g, double s);
+void		draw_player_(int x, int y, t_game *g);
+int			get_color(char c);
 
 /* --- Setup Functions --- */
 void		set_background(t_game *g, t_textures *textures);

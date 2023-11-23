@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbrice <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kbrice <kbrice@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:49:45 by kbrice            #+#    #+#             */
-/*   Updated: 2023/11/23 12:52:58 by kbrice           ###   ########.fr       */
+/*   Updated: 2023/11/23 13:17:44 by kbrice           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ int	get_color(char c)
 	if (c == 'D')
 		return (COLOR_DOOR);
 	return (COLOR_FLOOR);
+}
+
+void	draw_player_(int x, int y, t_game *g)
+{
+	if (x >= 0 && y >= 0 && x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
+	{
+		my_mlx_pixel_put(&g->ray_img, x, y, COLOR_PLAYER);
+	}
 }
 
 void	draw_player(t_game *g, double s)
@@ -43,8 +51,7 @@ void	draw_player(t_game *g, double s)
 		y = ys;
 		while (y <= y2)
 		{
-			if (x >= 0 && y >= 0 && x < SCREEN_WIDTH && y < SCREEN_HEIGHT)
-				my_mlx_pixel_put(&g->ray_img, x, y, COLOR_PLAYER);
+			draw_player_(x, y, g);
 			y++;
 		}
 		x++;

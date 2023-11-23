@@ -1,11 +1,3 @@
-NO assets/wall_north.xpm
-SO assets/wall_south.xpm
-WE assets/wall_west.xpm
-EA assets/wall_east.xpm
-
-C 220,100,0
-F 225,30,0
-
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
