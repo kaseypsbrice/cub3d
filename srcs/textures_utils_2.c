@@ -46,6 +46,10 @@ int	convert_rgb(char *colours)
 	if (i == 3)
 	{
 		res = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+		free(split[0]);
+		free(split[1]);
+		free(split[2]);
+		free(split);
 		return (res);
 	}
 	else if (i > 3 || i < 3)

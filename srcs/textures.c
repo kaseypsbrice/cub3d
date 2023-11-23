@@ -61,6 +61,8 @@ void	read_map_for_textures(const char *path, t_game *g)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	close(fd);
 }
 // Reads the map file and assigns the texture paths to their
@@ -86,12 +88,14 @@ void	set_colours(char *line, t_game *g)
 	{
 		colour = get_texture_path(line, "C");
 		g->textures.ceiling_colour = convert_rgb(colour);
+		free(colour);
 		printf("C RGB int: %d\n", g->textures.ceiling_colour);
 	}
 	else if (has_element_name(line, "F"))
 	{
 		colour = get_texture_path(line, "F");
 		g->textures.floor_colour = convert_rgb(colour);
+		free(colour);
 		printf("F RGB int: %d\n", g->textures.floor_colour);
 	}
 }
