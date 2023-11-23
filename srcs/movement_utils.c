@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbrice <kbrice@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 12:53:18 by kbrice            #+#    #+#             */
+/*   Updated: 2023/11/23 12:55:04 by kbrice           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	is_wall(t_game *game, double next_pos_x, double next_pos_y)
@@ -35,6 +47,7 @@ int	is_wall(t_game *game, double next_pos_x, double next_pos_y)
  * POV according to the rotation angle.
  * 
  * Put this in the main:
- * mlx_hook(game.win, MotionNotify, PointerMotionMask, mouse_rotate_player, &game);
+ * mlx_hook(game.win, MotionNotify, PointerMotionMask,
+ * mouse_rotate_player, &game);
  * Btw, this does work. I've just commented it out for now.
  */
