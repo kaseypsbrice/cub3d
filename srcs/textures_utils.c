@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbrice <kbrice@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 12:47:37 by kbrice            #+#    #+#             */
+/*   Updated: 2023/11/23 13:11:22 by kbrice           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int has_element_name(char *line, char *identifier)
+int	has_element_name(char *line, char *identifier)
 {
-    size_t len;
+	size_t	len;
 
-    len = ft_strlen(identifier);
-    if (ft_strncmp(line, identifier, len) == 0 && ft_isspace(line[len]))
-    	return (1);
-    return (0);
+	len = ft_strlen(identifier);
+	if (ft_strncmp(line, identifier, len) == 0 && ft_isspace(line[len]))
+		return (1);
+	return (0);
 }
 // Checks the line to see if the element is present.
 // Insert the following before the if statement to see how

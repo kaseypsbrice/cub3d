@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checkers.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbrice <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 12:50:39 by kbrice            #+#    #+#             */
+/*   Updated: 2023/11/23 12:50:41 by kbrice           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	is_cub(char *str)
@@ -81,11 +93,11 @@ int	is_map_valid(t_game *g)
 	if (check_map_chars(g))
 	{
 		ft_putstr_fd("Error\ninvalid character in map or \
-duplicate/missing spawn position\n", 2); // Error that needs to be dealt with now that we have textures in the map file.
+duplicate/missing spawn position\n", 2);
 		return (0);
 	}
-	dup = duplicate_map(g); //
-	if (flood_fill(g, dup, g->player_pos.x, g->player_pos.y)) //
+	dup = duplicate_map(g);
+	if (flood_fill(g, dup, g->player_pos.x, g->player_pos.y))
 	{
 		ft_putstr_fd("Error\nmap not enclosed by walls\n", 2);
 		return (0);
