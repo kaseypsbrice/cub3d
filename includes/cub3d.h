@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbrice <kbrice@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 13:37:44 by kbrice            #+#    #+#             */
+/*   Updated: 2023/11/23 13:38:21 by kbrice           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # include <stdio.h>
@@ -187,7 +199,7 @@ void		move_back(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
 void		rotate_player(t_game *g, double angle);
-int			mouse_rotate_player(int	new_x, t_game *game);
+//int		mouse_rotate_player(int	new_x, t_game *game);
 
 /* --- Raycast Functions --- */
 void		raycast(t_game *g);
